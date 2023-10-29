@@ -1,0 +1,64 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 27 oct 2023, 21:01:00
+    Author     : Josuu
+*/
+
+#body
+{
+    height: 50%;    
+}
+#footer
+{
+    margin-top: 40%;
+}
+.una-linea
+{
+    box-sizing: inherit; 
+    white-space: nowrap; 
+}
+
+.espaciado-index
+{
+    padding-left: 25px;
+    padding-right: 25px;   
+}
+.espaciado-responsive
+{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.nav-link:hover 
+{
+    color: #D9DC0B; 
+ }
+ 
+ .nav-link-off
+ {
+    color: #000000;   
+ }
+
+ #nombre-dr
+ {
+     font-size: 12px;  
+ }
+ 
+ .color-footer
+ {
+     background-color: #A1D245    
+ }
+ 
+ .color-header
+ {
+    background-color: #45B9AC;
+ }
+ 
+ .alinear-item-footer
+ {
+     padding-top: 8px;
+ }
+

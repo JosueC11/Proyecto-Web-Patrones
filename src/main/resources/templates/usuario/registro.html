@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Registro</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"></header>
+        <div class = "container">
+            <div class = "Title">Registro</div>
+            <form action = "#">
+                <div class= "detalles-usuario">
+                    <div class="input-box">
+                        <span class="detalles">Nombre</span>
+                        <input type="text" placeholder="Ingrese su nombre" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Apellido</span>
+                        <input type="text" placeholder="Ingrese su apellido" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Cedula</span>
+                        <input type="text" placeholder="Ingrese su cedula" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Telefono</span>
+                        <input type="text" placeholder="Ingrese su telefono" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Dirección</span>
+                        <input type="text" placeholder="Ingrese su dirección" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Correo</span>
+                        <input type="text" placeholder="Ingrese su correo" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Contraseña</span>
+                        <input type="text" placeholder="Ingrese su contraseña" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="detalles">Confirmar contraseña</span>
+                        <input type="text" placeholder="Confirme su contraseña" required>
+                    </div>
+                    <div class="detalles_genero">
+                        <input type="radio" name="genero" id="dot-1">
+                        <input type="radio" name="genero" id="dot-2">
+                        <input type="radio" name="genero" id="dot-3">
+                        <span class="genero-titulo">Genero</span>
+                        <div class="categoria">
+                            <label for="dot-1">
+                                <span class="dot one"></span>
+                                <span class="genero">Masculino</span>    
+                            </label>
+                            <label for="dot-2">
+                                <span class="dot one"></span>
+                                <span class="genero">Femenino</span>    
+                            </label>
+                            <label for="dot-3">
+                                <span class="dot one"></span>
+                                <span class="genero">Prefiero no decirlo</span>    
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Registro">
+                </div>
+            </form>
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+    
+    <!-- Nombre, apellido, cedula, telefono, direccion, correo, contraseña, direccion_foto --> 
+</html>
