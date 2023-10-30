@@ -1,6 +1,6 @@
 package com.clinica.dao;
 
-import com.clinica.domain.UsuarioRegistro;
+import com.clinica.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface UsuarioDao extends JpaRepository<UsuarioRegistro, String> {
+public interface UsuarioDao extends JpaRepository<Usuario, String> {
     
-    public UsuarioRegistro findByCorreo(String cedulaCliente);  
+    public Usuario findByCorreo(String cedulaCliente);  
     
 }

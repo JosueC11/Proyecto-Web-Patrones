@@ -1,6 +1,6 @@
 package com.clinica.service;
 
-import com.clinica.domain.UsuarioRegistro;
+import com.clinica.domain.Usuario;
 
 /**
  *
@@ -9,8 +9,10 @@ import com.clinica.domain.UsuarioRegistro;
 
 public interface UsuarioService {
     
-    public UsuarioRegistro getUsuarioRegistro(String cedulaCliente);
+    public Usuario getUsuarioRegistro(String cedulaCliente);
     
-    public void registrarUsuario(UsuarioRegistro usuario);
+    public void registrarUsuario(Usuario usuario);
+    
+    public void loguearUsuario(Usuario usuario);
     
 }

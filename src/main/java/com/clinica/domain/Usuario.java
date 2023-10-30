@@ -9,10 +9,15 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import lombok.Data;
 
+/**
+ *
+ * @author Dennis
+ */
 @Data
 @Entity
 @Table(name = "clientes")
-public class UsuarioRegistro implements Serializable 
+
+public class Usuario implements Serializable
 {
     @Id
     private String correo;

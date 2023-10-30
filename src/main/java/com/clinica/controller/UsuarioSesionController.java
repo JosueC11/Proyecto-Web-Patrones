@@ -1,7 +1,8 @@
 package com.clinica.controller;
 
-import com.clinica.domain.UsuarioRegistro;
+import com.clinica.domain.Usuario;
 import com.clinica.service.UsuarioService;
+import javax.swing.JOptionPane;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,14 +27,35 @@ public class UsuarioSesionController
     
     @GetMapping("/registro")
     public String inicioRegistro(Model model) {
-        UsuarioRegistro usuario = new UsuarioRegistro();
+        Usuario usuario = new Usuario();
         model.addAttribute("usuario", usuario);
         return "/usuario/registrarse";
     }
-
+    
     @PostMapping("/registrar")
-    public String registrarUsuario(@ModelAttribute UsuarioRegistro usuario) {
+    public String registrarUsuario(@ModelAttribute Usuario usuario) {
         us.registrarUsuario(usuario);
         return "index";
     }   
+    
+    @GetMapping("login")
+    public String inicioLogin(Model model)
+    {
+        Usuario usuario = new Usuario();
+        model.addAttribute("usuario", usuario);
+        return "/usuario/login";
+    }
+
+    @PostMapping("/loguear")
+    public String loguearUsuario(@ModelAttribute Usuario usuario, Model model) {
+        Usuario usuarioRegistrado = us.getUsuarioRegistro(usuario.getCorreo());
+        if (usuarioRegistrado != null) {
+            if (usuarioRegistrado.getContrasena().equals(usuario.getContrasena())) { 
+                model.addAttribute("bienvenida", "¡Bienvenido, " + usuarioRegistrado.getNombre() + "!");
+                return "index";
+            }
+        }
+        model.addAttribute("error", "Correo o contraseña incorrectos");
+        return "/usuario/login";
+    }
 }
