@@ -1,0 +1,51 @@
+/* Estilo para el título del formulario de inicio de sesión */
+.Title {
+    background-color: #A1D245;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+/* Estilo para el contenedor del formulario de inicio de sesión */
+.login-container {
+    border: 1px solid #A1D245;
+    border-radius: 10px;
+    padding: 50px; /* Aumenta el espacio interno vertical del contenedor */
+    margin: 20px auto; /* Puedes ajustar el margen superior o inferior si es necesario */
+    max-width: 800px;
+    background-color: #45B9AC;
+    color: white;
+}
+
+/* Estilo para el botón del formulario de inicio de sesión */
+.btn-primary {
+    display: block;
+    margin: 0 auto;
+    background-color: #A1D245;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón del formulario de inicio de sesión cuando se pasa el mouse sobre él */
+.btn-primary:hover {
+    background-color: #93C138;
+}
+
+/* Estilo para el botón "Mostrar Contraseña" */
+#mostrarContrasena {
+    background-color: #A1D245; /* Color de fondo del botón */
+    color: white; /* Color del texto en el botón */
+    padding: 5px 10px; /* Ajustar el espaciado interno del botón para hacerlo más pequeño */
+    border: none; /* Eliminar el borde del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse sobre el botón */
+    font-size: 12px; /* Ajustar el tamaño del texto si es necesario */
+}
+
+/* Estilo para el botón "Mostrar Contraseña" cuando se pasa el mouse sobre él */
+#mostrarContrasena:hover {
+    background-color: #93C138; /* Color de fondo diferente al pasar el mouse */
+}

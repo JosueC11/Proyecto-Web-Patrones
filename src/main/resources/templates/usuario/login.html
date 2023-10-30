@@ -1,15 +1,57 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
         <title>Registro</title>
         <meta charset="UTF-8">
+        <link href="/css/style_login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"></header>
-        <div>
-            <p>Este es el login</p>
+        <div class="container login-container">
+            <div class="Title">Iniciar Sesión</div>
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" required>
+                        <button id="mostrarContrasena" type="button">Mostrar Contraseña</button>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck">
+                        <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
+                </div>
+                <div class="espaciado-index">
+                    <a class="una-linea" href="/usuario/recuperar" target="_blank">¿Olvidaste tu contraseña?</a>
+                </div>
+                <br>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
         </div>
         <footer th:replace="~{layout/plantilla :: footer}"></footer>
+        
+        <!-- Codigo de JavaScript que permite intercambiar el espacio de la contraseña para visualizarla -->
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const contrasenaInput = document.getElementById("contrasena");
+                const mostrarContrasenaButton = document.getElementById("mostrarContrasena");
+
+                mostrarContrasenaButton.addEventListener("click", function () {
+                    if (contrasenaInput.type === "password") {
+                        contrasenaInput.type = "text";
+                        mostrarContrasenaButton.textContent = "Ocultar Contraseña";
+                    } else {
+                        contrasenaInput.type = "password";
+                        mostrarContrasenaButton.textContent = "Mostrar Contraseña";
+                    }
+                });
+            });
+
+        </script>
+        
     </body>
 </html>

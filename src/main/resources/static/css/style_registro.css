@@ -1,0 +1,53 @@
+.titulo {
+    background-color: #A1D245;
+    text-align: center;
+    color: white; /* Color del texto en el título */
+    padding: 10px; /* Espacio interno para el título */
+
+}
+
+.registro-container {
+    border: 1px solid #A1D245; /* Borde del contenedor */
+    border-radius: 10px 10px 10px 10px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interno del contenedor */
+    margin: 20px auto; /* Centrar el contenedor horizontalmente */
+    max-width: 800px; /* Ancho máximo del contenedor */
+    background-color: #45B9AC; /* Color de fondo del contenedor */
+    color: white;
+}
+
+.btn-primary {
+    display: block;
+    margin: 0 auto; /* Centrar el botón horizontalmente */
+}
+
+.btn-primary {
+    display: block;
+    background-color: #A1D245; /* Color de fondo del botón */
+    color: white; /* Color del texto en el botón */
+    padding: 10px 20px; /* Espacio interno del botón */
+    border: none; /* Eliminar el borde del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse sobre el botón */
+}
+
+/* Estilo para el botón cuando se pasa el mouse sobre él */
+.btn-primary:hover {
+    background-color: #93C138; /* Color de fondo diferente al pasar el mouse */
+}
+
+/* Estilo para el botón "Mostrar Contraseña" */
+#mostrarContrasena {
+    background-color: #A1D245; /* Color de fondo del botón */
+    color: white; /* Color del texto en el botón */
+    padding: 5px 10px; /* Ajustar el espaciado interno del botón para hacerlo más pequeño */
+    border: none; /* Eliminar el borde del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse sobre el botón */
+    font-size: 12px; /* Ajustar el tamaño del texto si es necesario */
+}
+
+/* Estilo para el botón "Mostrar Contraseña" cuando se pasa el mouse sobre él */
+#mostrarContrasena:hover {
+    background-color: #93C138; /* Color de fondo diferente al pasar el mouse */
+}
