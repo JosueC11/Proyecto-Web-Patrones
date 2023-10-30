@@ -21,4 +21,6 @@ public interface ArticuloService
     public void agregarArticulo(Articulo articulo);
     
     public void eliminarArticulo(Long IdArticulo);   
+    
+    public void agregarCarrito(Articulo articulo);  
 }

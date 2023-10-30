@@ -25,9 +25,9 @@ public class MetodoPagoServiceImpl implements MetodoPagoService
     
     @Override
     @Transactional(readOnly = true)
-    public List<MetodoPago> getMetodosPagos(String cedulaCliente)
+    public List<MetodoPago> getMetodosPagos(String correo)
     {
-        var listadoMetodosPago = metodoPagoDao.findAllByCedulaCliente(cedulaCliente);
+        var listadoMetodosPago = metodoPagoDao.findAllByCorreo(correo);
         return listadoMetodosPago;
     }
     
@@ -38,8 +38,18 @@ public class MetodoPagoServiceImpl implements MetodoPagoService
     }
     
     @Override
-    public void eliminarMetodoPago(MetodoPago metodoPago)
+    @Transactional
+    public void agregarMetodoPago(MetodoPago metodoPago)
     {
-        metodoPagoDao.delete(metodoPago);
+        metodoPago.setCorreo("OscarCañellas@gmail.com");
+        metodoPago.setPredeterminado(false);
+        metodoPagoDao.save(metodoPago);
+    }
+    
+    @Override
+    @Transactional
+    public void eliminarMetodoPago(String numeroTarjeta)
+    {
+        metodoPagoDao.deleteByNumeroTarjeta(numeroTarjeta);
     }    
 }

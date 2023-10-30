@@ -21,6 +21,7 @@ public class ArticuloServiceImpl implements ArticuloService
 {
     @Autowired
     private ArticuloDao articuloDao;
+    
     @Override
     public List<Articulo> getArticulos()
     {
@@ -45,5 +46,10 @@ public class ArticuloServiceImpl implements ArticuloService
     public void eliminarArticulo(Long IdArticulo)
     {
         articuloDao.deleteById(IdArticulo);
+    }
+    
+    @Override
+    public void agregarCarrito(Articulo articulo)
+    {
     }
 }

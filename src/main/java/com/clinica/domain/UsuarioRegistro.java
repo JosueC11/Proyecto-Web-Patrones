@@ -9,20 +9,17 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import lombok.Data;
 
-@Entity
-@Table(name = "usuarios_registro")
 @Data
+@Entity
+@Table(name = "clientes")
 public class UsuarioRegistro implements Serializable 
 {
+    @Id
+    private String correo;
     private String nombre;
     private String apellido;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String cedula;
     private String telefono;
     private String direccion;
-    @Column(name = "correo_electronico")
-    private String correoElectronico;
     @Column(name = "contraseña")
     private String contrasena;
     @Column(name = "direccion_foto")

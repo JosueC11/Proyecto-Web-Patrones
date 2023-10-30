@@ -17,5 +17,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticuloDao extends JpaRepository <Articulo, Long> 
 { 
-    public List<Articulo> findAllByCategoria(String categoria);
+    public List<Articulo> findAllByCategoria(String categoria);  
 }

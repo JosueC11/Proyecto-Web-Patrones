@@ -15,7 +15,8 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface MetodoPagoDao extends JpaRepository<MetodoPago,Long> 
+public interface MetodoPagoDao extends JpaRepository<MetodoPago,String> 
 {  
-    public List<MetodoPago> findAllByCedulaCliente(String cedulaCliente);  
+    public List<MetodoPago> findAllByCorreo(String correo);  
+    public void deleteByNumeroTarjeta(String numeroTarjeta);  
 }

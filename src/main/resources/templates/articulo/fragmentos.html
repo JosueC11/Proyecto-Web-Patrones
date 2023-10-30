@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>TODO supply a title</title>
+    </head>
+    <body>
+        <section th:fragment="listado">
+            <br/>
+            <div class="container">
+                <div class="dropdown d-flex bd-highlight mb-3">
+                    <button class="btn btn-secondary dropdown-toggle me-auto p-2 bd-highlightt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categoría
+                    </button>
+                    <div class="p-2 bd-highlight">
+                        Artículos: 0
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <a th:href="@{/articulo/abrircarrito}" class="btn btn-success">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" th:href="@{/articulo/listar}">Todas</a></li>
+                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Cepillo Dental}">Cepillo Dental</a></li>
+                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Pasta Dental}">Pasta Dental</a></li>
+                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Hilo Dental}">Hilo Dental</a></li>
+                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Ligas}">Ligas</a></li>
+                    </ul>
+                </div>
+                <br/>
+                <h4>Lista Artículos</h4>
+                <br/>
+                <div th:if="${!articulos.empty}">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Marca</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                                <th>Opción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="articulo: ${articulos}">
+                                <td th:text="${articulo.categoria}"/>
+                                <td th:text="${articulo.marca}"/>
+                                <td th:text="${articulo.nombre}"/>
+                                <td th:text="${articulo.precio}"/>
+                                <td th:text="${articulo.estado} ? 'Disponible' : 'Agotado'">
+                                </td>
+                                <td>
+                                    <a th:href="@{/articulo/agregarcarrito}" th:if="${articulo.estado}"
+                                       class="btn btn-success">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center p-2" th:if="${articulos.empty}">
+                    <span>No hay Articulos aún</span>
+                </div>
+            </div>
+            <br/>
+            <br/>
+        </section>
+        
+        <section th:fragment="carritocompras">
+            <br/>
+            <div class="container">
+                <div class="dropdown d-flex bd-highlight mb-3">
+                    <button class="btn btn-secondary dropdown-toggle me-auto p-2 bd-highlightt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categoría
+                    </button>
+                    <div class="p-2 bd-highlight">
+                        Artículos: 0
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <a class="btn btn-success">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </div>
+                </div>
+                <br/>
+                <h4>Carrito Compras</h4>
+                <br/>
+                <div>
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Marca</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                                <th>Opción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td>
+                                    <a class="btn btn-success">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="container">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button class="btn btn-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pagar
+                            </button>
+                            <div class="mx-3"></div> <!-- Espacio horizontal -->
+                            <a class="btn btn-success" th:href="@{/articulo/listar}">Volver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center p-2">
+                    <span>No hay Articulos aún</span>
+                </div>
+            </div>
+            <br/>
+            <br/>
+        </section>
+    </body>
+</html>

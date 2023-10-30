@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface UsuarioRegistroDao extends JpaRepository<UsuarioRegistro, String> {
-    public UsuarioRegistro findByCedulaCliente(String cedulaCliente);  
+public interface UsuarioDao extends JpaRepository<UsuarioRegistro, String> {
+    
+    public UsuarioRegistro findByCorreo(String cedulaCliente);  
+    
 }

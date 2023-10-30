@@ -31,6 +31,6 @@ public class Articulo
     private String marca;
     private String nombre;
     private Double precio;
-    private Boolean estado;
+    private boolean estado;
     private String categoria;
 }

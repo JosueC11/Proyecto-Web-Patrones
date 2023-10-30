@@ -10,9 +10,11 @@ import java.util.List;
 
 public interface MetodoPagoService 
 {
-    public List<MetodoPago> getMetodosPagos(String cedulaCliente);
+    public List<MetodoPago> getMetodosPagos(String correo);
     
     public void establecerMetodoPredeterminado(MetodoPago metodoPago);
     
-    public void eliminarMetodoPago(MetodoPago metodoPago); 
+    public void agregarMetodoPago(MetodoPago metodoPago);
+    
+    public void eliminarMetodoPago(String numeroTarjeta); 
 }

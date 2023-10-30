@@ -7,17 +7,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Josuu
 */
 
-#body
-{
-    height: 50%;    
-}
-#footer
-{
-    margin-top: 16%;
-}
 .una-linea
 {
-    box-sizing: inherit; 
     white-space: nowrap; 
 }
 
@@ -62,3 +53,51 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
      padding-top: 8px;
  }
 
+.menu li {
+    position: relative;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #44BAAC;
+    z-index: 1000;
+    text-align: left;
+    padding: 15px; 
+}
+
+.menu li:hover .submenu {
+    display: block;
+    left: 20%;
+    top: 100%;
+}
+
+ul.sin-vinetas {
+    list-style-type: none;
+}
+
+.formularios 
+{
+    padding-top: 10%;   
+}
+
+.formularios div
+{
+    padding-left: 5%;   
+    padding-right: 5%;  
+}
+
+.padding-0
+{
+    padding: 0;  
+}
+
+.alinear-btn-derecha
+{
+    margin-left: 5%;
+}
+
+.alinear-btn-izquierda
+{
+    margin-left: 5%;
+}

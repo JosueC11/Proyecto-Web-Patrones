@@ -23,7 +23,6 @@ import lombok.Data;
 public class MetodoPago implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="numero_tarjeta")
     private String numeroTarjeta;
     private String nombre;
@@ -34,6 +33,6 @@ public class MetodoPago implements Serializable
     @Column(name="año_vencimiento")
     private String annoVencimiento;
     private String cvc;
-    @Column(name="cedula_cliente")
-    private String cedulaCliente;  
+    private String correo;  
+    private boolean predeterminado;
 }

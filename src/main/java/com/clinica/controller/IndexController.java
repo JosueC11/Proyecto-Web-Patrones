@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author Josuu
  */
-@Controller
-@RequestMapping("")
+
 public class IndexController 
 {
-    @GetMapping("")
-    public String mostrarIndex()
-    {      
-        return "/layout/plantilla";       
-    }   
+     
 }
