@@ -27,7 +27,6 @@ public class Cita
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_cita")
     private Long idCita;
     private Date fecha;
@@ -35,6 +34,5 @@ public class Cita
     @Column(name="nombre_doctor")
     private String nombreDoctor;
     private Boolean estado;
-    @Column(name="cedula_cliente")
-    private String cedulaCliente;
+    private String correo;
 }

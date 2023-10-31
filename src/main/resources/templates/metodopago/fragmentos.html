@@ -6,7 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>TODO supply a title</title>
+        <title>[[#{aplicacion.titulo}]]</title>
     </head>
     <body>
         <section th:fragment="listado">
@@ -15,19 +15,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Métodos de Pago</h4>
+                                <h4>[[#{metodopago.titulo}]]</h4>
                             </div>
-                            <div th:if="${!metodos.empty}">
+                            <div th:if="${metodos != null and !metodos.empty}">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Nombre Método Pago</th>
-                                            <th>Dueño</th>
-                                            <th>Número Tarjeta</th>
-                                            <th>Mes/Año Vencimiento</th>
-                                            <th>CVC</th>
-                                            <th>Predeterminado</th>
-                                            <th>Opción</th>
+                                            <th>[[#{metodo.nomnre}]]</th>
+                                            <th>[[#{metodo.dueño}]]</th>
+                                            <th>[[#{metodo.numerotarjeta}]]</th>
+                                            <th>[[#{metodo.mesanov}]]</th>
+                                            <th>[[#{metodo.predeterminado}]]</th>
+                                            <th>[[#{metodo.predeterminado}]]</th>
+                                            <th>[#{aplicacion.opcion}]]</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,8 +55,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${metodos.empty}">
-                                <span>No hay métodos de pago aún</span>
+                            <div class="text-center p-2" th:if="${metodos == null or metodos.empty}">
+                                <span>[[#{metodo.noArticulos}]]</span>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="row">
                     <div class="col-md-2">   
                         <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#agregarMetodoPago">
-                            <i class="fa-solid fa-circle-plus"></i> Añadir Método de Pago
+                            <i class="fa-solid fa-circle-plus"></i>[[#{añadir.metodo}]]
                         </button>
                     </div>
                 </div>
@@ -88,31 +88,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <form class="row g-3" th:action="@{/metodopago/agregar}" th:object="${metodoPago}"  method="POST">
                             <br/>
                             <div class="col-12">
-                                <label for="inputAddress" class="form-label">Nombre</label>
+                                <label for="inputAddress" class="form-label">[[#{metodo.nomnre}]]</label>
                                 <input type="text" class="form-control" id="inputAddress" th:field="*{nombre}" placeholder="1234 Main St" required>
                             </div>
                             <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Dueño</label>
+                                <label for="inputAddress2" class="form-label">[[#{metodo.dueño}]]</label>
                                 <input type="text" class="form-control" id="inputAddress2" th:field="*{duenno}" placeholder="Apartment, studio, or floor" required>
                             </div>
                             <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Numero Tarjeta</label>
+                                <label for="inputAddress2" class="form-label">[[#{metodo.numerotarjeta}]]</label>
                                 <input type="text" class="form-control" id="inputAddress2" th:field="*{numeroTarjeta}" placeholder="Apartment, studio, or floor" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">N. Mes Vencimiento</label>
+                                <label for="inputEmail4" class="form-label">[[#{metodo.mes}]]</label>
                                 <input type="number" class="form-control" id="inputEmail4" min="1" max="12" th:field="*{mesVencimiento}" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">Año vencimiento</label>
+                                <label for="inputEmail4" class="form-label">[[#{metodo.año}]]</label>
                                 <input type="number" class="form-control" id="inputEmail4" min="2023" max="2040" th:field="*{annoVencimiento}" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputPassword4" class="form-label">CVC</label>
+                                <label for="inputPassword4" class="form-label">[[#{metodo.cvc}]]</label>
                                 <input type="password" class="form-control" id="inputPassword4" th:field="*{cvc}" required>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Añadir</button>
+                                <button type="submit" class="btn btn-primary">[[#{accion.añadir}]]</button>
                             </div>
                             <br/>
                         </form>
@@ -121,7 +121,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>  
             </div>
         </section>
-        
-        
     </body>
 </html>

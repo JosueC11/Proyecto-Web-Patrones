@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>Registro</title>
+        <title>[[#{aplicacion.titulo}]]</title>
         <meta charset="UTF-8"/>
             <link href="/css/style_registro.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"></header>
         <div class="container registro-container">
-            <div class="titulo">Registro</div>
+            <div class="titulo">[[#{registrarse.registro}]]</div>
             <form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
+                    <label for="nombre" class="form-label">[[#{registrarse.nombre}]]</label>
                     <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="apellido" class="form-label">Apellido</label>
+                    <label for="apellido" class="form-label">[#{registrarse.apellido}]]</label>
                     <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="telefono" class="form-label">Teléfono</label>
+                    <label for="telefono" class="form-label">[[#{registrarse.telefono}]]</label>
                     <input type="text" class="form-control" id="telefono" th:field="*{telefono}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="direccion" class="form-label">Dirección</label>
+                    <label for="direccion" class="form-label">[[#{registrarse.direccion}]]</label>
                     <input type="text" class="form-control" id="direccion" th:field="*{direccion}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="correo" class="form-label">Correo Electrónico</label>
+                    <label for="correo" class="form-label">[[#{registrarse.CorreoElecRegi}]]</label>
                     <input type="email" class="form-control" id="correo" th:field="*{correo}" aria-describedby="emailHelp" required>
-                        <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+                        <div id="emailHelp" class="form-text">[[#{registrarse.NuncaCompartiremos}]]</div>
                 </div>
                 <div class="mb-3">
-                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <label for="contrasena" class="form-label">[[#{registrarse.contrasenna}]]</label>
                     <input type="password" class="form-control" id="contrasena" th:field="*{contrasena}" required>
                         <br/>
-                        <button id="mostrarContrasena" type="button">Mostrar Contraseña</button>
+                        <button id="mostrarContrasena" type="button">[[#{registrarse.mostrarContraseña}]]</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <button type="submit" class="btn btn-primary">[[#{registrarse.registrarse}]]</button>
             </form>
         </div>
         <br/>

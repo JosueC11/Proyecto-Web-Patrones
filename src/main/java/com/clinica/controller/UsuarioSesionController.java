@@ -2,7 +2,6 @@ package com.clinica.controller;
 
 import com.clinica.domain.Usuario;
 import com.clinica.service.UsuarioService;
-import javax.swing.JOptionPane;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,5 +56,17 @@ public class UsuarioSesionController
         }
         model.addAttribute("error", "Correo o contraseña incorrectos");
         return "/usuario/login";
+    }
+    
+    @GetMapping("/perfil")
+    public String perfilUsuario(Model model) {
+        Usuario usuario = new Usuario();
+        model.addAttribute("usuario", usuario);
+        return "/usuario/perfilUsuario";
+    }
+    
+    @PostMapping("/informacion")
+    public String informacionUsuario() {
+        return "index";
     }
 }

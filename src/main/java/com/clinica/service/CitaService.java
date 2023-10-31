@@ -15,11 +15,15 @@ import java.util.List;
 
 public interface CitaService 
 {
-    public List<Cita> getCitas(Date fecha);
+    public List<Cita> getCitas();
     
-    public void agendarCita(Cita cita, String cedulaCliente);
+    public List<Cita> getCitasFecha(String fecha);
+    
+    public void agendarCita(Long Id);
     
     public List<Cita> getCitasAgendadas();
+    
+    public List<Cita> getCitasUsuario(String correo);
 
     public void eliminarCita(Long idCita);             
 }

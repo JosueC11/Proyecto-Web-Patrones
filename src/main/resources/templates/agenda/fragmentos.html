@@ -3,13 +3,52 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>[[#{aplicacion.titulo}]]</title>
     </head>
     <body>
-        <div>TODO write content</div>
+        <section th:fragment="listado">
+            <br/>
+            <div class="container">
+                <br/>
+                <h4>Agenda[[#{aplicacion.titulo}]]</h4>
+                <br/>
+                <div class="d-flex justify-content-between color-header padding-5">
+                    <h5>
+                        [[#{perfUsuario.fotoPerfil}]]
+                    </h5>
+                    <h5>
+                        [[#{agenda.consultas}]]
+                    </h5>  
+                </div>
+                <br/>
+                <br/>
+                <div th:if="${agenda != null and !agenda.empty}">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>[[#{aplicacion.nombreDoctor}]]</th>
+                                <th>[[#{cita.fecha}]]</th>
+                                <th>[[#{cita.hora}]]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="agend: ${agenda}">
+                                <td th:text="${agend.nombreDoctor}"/>
+                                <td th:text="${agend.fecha}"/>
+                                <td th:text="${agend.hora}"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center p-2" th:if="${agenda == null or genda.empty}">
+                    <span>[[#{agenda.noAgendas}]]</span>
+                </div>
+            </div>
+            <br/>
+            <br/>
+        </section>      
     </body>
 </html>

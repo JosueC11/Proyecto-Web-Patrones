@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>[[#{aplicacion.titulo}]]</title>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"></header>
+        <div class="container registro-container">
+            <div class="titulo">[[#{aplicacion.titulo}]]</div>
+            <form th:action="@{/usuario/informacion}" th:object="${usuario}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">[[#{perfUsuario.fotoPerfil}]]</label>
+                    <img th:src="${urlImagen}" alt="Foto de Perfil" id="imagenPerfil">
+                </div>
+                <div class="mb-3">
+                    <label for="imagenPerfil" class="form-label">[[#{perfUsuario.actualizarImgPerfil}]]</label>
+                    <input type="file" class="form-control form-control-sm" id="imagenPerfil" name="imagenPerfil">
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">[[#{perfUsuario.nombre}]]</label>
+                    <span th:text="${usuario.nombre}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for "apellido" class="form-label">[[#{perfUsuario.apellido}]]</label>
+                    <span th:text="${usuario.apellido}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">[[#{perfUsuario.telefono}]]</label>
+                    <span th:text="${usuario.telefono}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">[[#{perfUsuario.direccion}]]</label>
+                    <span th:text="${usuario.direccion}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">[[#{perfUsuario.correoElec}]]</label>
+                    <span th:text="${usuario.correo}"></span>
+                </div>
+            </form>
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+</html>
