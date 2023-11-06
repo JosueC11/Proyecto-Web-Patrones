@@ -4,7 +4,9 @@
  */
 package com.clinica.controller;
 
+import com.clinica.domain.Usuario;
 import com.clinica.service.CitaService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,9 +47,10 @@ public class CitasController
     }
     
     @GetMapping("/agendar/{idCita}")
-    public String agendarCita(@PathVariable Long idCita)
+    public String agendarCita(@PathVariable Long idCita, HttpSession httpSession)
     {
-        cS.agendarCita(idCita);
+        Usuario usuario = (Usuario) httpSession.getAttribute("usuario");
+        cS.agendarCita(idCita,usuario.getCorreo());
         return "redirect:/cita/listar";     
     }  
     

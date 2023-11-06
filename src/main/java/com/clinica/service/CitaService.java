@@ -19,7 +19,7 @@ public interface CitaService
     
     public List<Cita> getCitasFecha(String fecha);
     
-    public void agendarCita(Long Id);
+    public void agendarCita(Long Id,String correo);
     
     public List<Cita> getCitasAgendadas();
     

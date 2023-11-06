@@ -2,6 +2,7 @@ package com.clinica.controller;
 
 import com.clinica.domain.Usuario;
 import com.clinica.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class UsuarioSesionController
     @Autowired
     private UsuarioService us;
     
+    @Autowired
+    private HttpSession httpSession;
+    
     @GetMapping("/registro")
     public String inicioRegistro(Model model) {
         Usuario usuario = new Usuario();
@@ -37,7 +41,7 @@ public class UsuarioSesionController
         return "index";
     }   
     
-    @GetMapping("login")
+    @GetMapping("/login")
     public String inicioLogin(Model model)
     {
         Usuario usuario = new Usuario();
@@ -51,6 +55,7 @@ public class UsuarioSesionController
         if (usuarioRegistrado != null) {
             if (usuarioRegistrado.getContrasena().equals(usuario.getContrasena())) { 
                 model.addAttribute("bienvenida", "¡Bienvenido, " + usuarioRegistrado.getNombre() + "!");
+                httpSession.setAttribute("usuario", usuario);
                 return "index";
             }
         }

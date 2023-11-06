@@ -4,7 +4,9 @@
  */
 package com.clinica.controller;
 
+import com.clinica.domain.Usuario;
 import com.clinica.service.CitaService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,11 +28,17 @@ public class AgendaController
     private CitaService cS;
 
     @GetMapping("/listar")
-    public String mostrarListado(Model model) 
+    public String mostrarListado(HttpSession httpSession, Model model) 
     {
-        var citasAgendadas = cS.getCitasUsuario("OscarCañellas@gmail.com");
-        model.addAttribute("agenda", citasAgendadas);
-        return "/agenda/listado";
-    }
-    
+        Usuario usuario = (Usuario) httpSession.getAttribute("usuario");
+        if(usuario == null)
+        {
+            return "redirect:/usuario/login";
+        }else
+        {
+            var citasAgendadas = cS.getCitasUsuario(usuario.getCorreo());
+            model.addAttribute("agenda", citasAgendadas);
+            return "/agenda/listado";           
+        }
+    }   
 }

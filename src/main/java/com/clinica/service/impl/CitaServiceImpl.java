@@ -6,7 +6,9 @@ package com.clinica.service.impl;
 
 import com.clinica.dao.CitaDao;
 import com.clinica.domain.Cita;
+import com.clinica.domain.Usuario;
 import com.clinica.service.CitaService;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,7 +79,7 @@ public class CitaServiceImpl implements CitaService
     }
     
     @Override
-    public void agendarCita(Long idCita)
+    public void agendarCita(Long idCita, String correo)
     {
         Optional<Cita> cita = citaDao.findById(idCita);
 
@@ -85,10 +87,9 @@ public class CitaServiceImpl implements CitaService
         if (cita.isPresent()) {
             // Obtén el valor del Optional
             Cita citaValor = cita.get();
-
             // Realiza operaciones con el valor
             citaValor.setEstado(Boolean.FALSE);
-            citaValor.setCorreo("OscarCanellas@gmail.com");
+            citaValor.setCorreo(correo);
 
             // Guarda el valor actualizado en la base de datos
             citaDao.save(citaValor);
