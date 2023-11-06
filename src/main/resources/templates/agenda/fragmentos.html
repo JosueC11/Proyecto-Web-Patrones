@@ -30,6 +30,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <thead class="table-dark">
                             <tr>
                                 <th>[[#{aplicacion.nombreDoctor}]]</th>
+                                <th>[[#{cita.descripcion}]]</th>
                                 <th>[[#{cita.fecha}]]</th>
                                 <th>[[#{cita.hora}]]</th>
                             </tr>
@@ -37,6 +38,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <tbody>
                             <tr th:each="agend: ${agenda}">
                                 <td th:text="${agend.nombreDoctor}"/>
+                                <td th:text="${agend.descripcion}"/>
                                 <td th:text="${agend.fecha}"/>
                                 <td th:text="${agend.hora}"/>
                             </tr>

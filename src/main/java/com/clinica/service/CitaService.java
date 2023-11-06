@@ -5,8 +5,8 @@
 package com.clinica.service;
 
 import com.clinica.domain.Cita;
-import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -17,9 +17,11 @@ public interface CitaService
 {
     public List<Cita> getCitas();
     
+    public Cita getCitaId(Long id);
+    
     public List<Cita> getCitasFecha(String fecha);
     
-    public void agendarCita(Long Id,String correo);
+    public void agendarCita(Cita cita,String correo);
     
     public List<Cita> getCitasAgendadas();
     

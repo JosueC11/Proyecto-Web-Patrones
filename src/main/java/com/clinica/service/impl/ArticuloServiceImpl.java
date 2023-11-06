@@ -5,11 +5,14 @@
 package com.clinica.service.impl;
 
 import com.clinica.dao.ArticuloDao;
+import com.clinica.dao.CarritoDao;
 import com.clinica.domain.Articulo;
+import com.clinica.domain.Carrito;
 import com.clinica.service.ArticuloService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -22,7 +25,11 @@ public class ArticuloServiceImpl implements ArticuloService
     @Autowired
     private ArticuloDao articuloDao;
     
+    @Autowired
+    private CarritoDao carritoDao;
+    
     @Override
+    @Transactional(readOnly = true)
     public List<Articulo> getArticulos()
     {
         var listadoArticulos = articuloDao.findAll();
@@ -30,6 +37,7 @@ public class ArticuloServiceImpl implements ArticuloService
     }
     
     @Override
+    @Transactional(readOnly = true)
     public List<Articulo> getArticulosCategoria(String categoria)
     {
         var listadoArticulos = articuloDao.findAllByCategoria(categoria);
@@ -37,19 +45,30 @@ public class ArticuloServiceImpl implements ArticuloService
     }
     
     @Override
+    @Transactional
     public void agregarArticulo(Articulo articulo)
     {
         articuloDao.save(articulo);
     }
     
     @Override
+    @Transactional
     public void eliminarArticulo(Long IdArticulo)
     {
         articuloDao.deleteById(IdArticulo);
     }
     
     @Override
-    public void agregarCarrito(Articulo articulo)
+    @Transactional
+    public void agregarCarrito(Long  idArticulo)
     {
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Carrito> getCarrito(String correo)
+    {
+        var listado = carritoDao.findAllByCorreo(correo);
+        return listado;
     }
 }

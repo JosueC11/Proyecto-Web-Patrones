@@ -4,6 +4,7 @@
  */
 package com.clinica.controller;
 
+import com.clinica.domain.Cita;
 import com.clinica.domain.Usuario;
 import com.clinica.service.CitaService;
 import jakarta.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,29 +32,51 @@ public class CitasController
 
     @Autowired
     private CitaService cS;
+    
+    @Autowired
+    private HttpSession httpSession;
 
     @GetMapping("/listar")
-    public String mostrarListado(Model model) {
-        var citas = cS.getCitas();
-        model.addAttribute("citas", citas);
-        return "/cita/listado";
+    public String mostrarListado(Model model) 
+    {
+        String usuario = (String) httpSession.getAttribute("correo");
+        
+        if(usuario == null)
+        {
+            return "redirect:/usuario/login";
+        }
+        else
+        {
+            var citas = cS.getCitas();
+            model.addAttribute("citas", citas);
+            return "/cita/listado";
+        }
     }
     
     @PostMapping("/listarfecha")
     public String mostrarListadoFecha(@RequestParam("fecha") String fecha, Model model) 
-    {
-        var articulos = cS.getCitasFecha(fecha);
-        model.addAttribute("citas", articulos);
-        return "/cita/listado";
+    {    
+        var citas = cS.getCitasFecha(fecha);
+        model.addAttribute("citas", citas);
+        return "/cita/listado";    
     }
     
-    @GetMapping("/agendar/{idCita}")
-    public String agendarCita(@PathVariable Long idCita, HttpSession httpSession)
+    @PostMapping("/agendar")
+    public String agendarCita(@ModelAttribute Cita citaAgendar)
     {
-        Usuario usuario = (Usuario) httpSession.getAttribute("usuario");
-        cS.agendarCita(idCita,usuario.getCorreo());
+        String usuario = (String) httpSession.getAttribute("correo");
+        cS.agendarCita(citaAgendar,usuario);
         return "redirect:/cita/listar";     
     }  
+    
+    @GetMapping("/traercita/{idCita}")
+    public String agendarCita(@PathVariable Long idCita, Model model)
+    {
+        var cita = cS.getCitaId(idCita);
+        model.addAttribute("cita", cita);
+        return "/cita/agenda";     
+    }  
+
     
     @GetMapping("/eliminar/{idCita}")
     public String eliminarCita(@PathVariable Long idCita) 

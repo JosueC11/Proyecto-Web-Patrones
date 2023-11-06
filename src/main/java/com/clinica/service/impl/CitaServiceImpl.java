@@ -6,9 +6,7 @@ package com.clinica.service.impl;
 
 import com.clinica.dao.CitaDao;
 import com.clinica.domain.Cita;
-import com.clinica.domain.Usuario;
 import com.clinica.service.CitaService;
-import jakarta.servlet.http.HttpSession;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -30,6 +29,7 @@ public class CitaServiceImpl implements CitaService
     private CitaDao citaDao;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Cita> getCitas()
     {      
         Date fechaHoraActual = new Date(System.currentTimeMillis());
@@ -41,7 +41,7 @@ public class CitaServiceImpl implements CitaService
         List<Cita> citasFiltradas = new ArrayList<>();
 
         for (Cita cita : listadoCitas) {
-            if (cita.getEstado() && cita.getCorreo().isBlank()) {
+            if (cita.getEstado()) {
                 citasFiltradas.add(cita);
             }
         }
@@ -49,6 +49,7 @@ public class CitaServiceImpl implements CitaService
     }
     
     @Override
+    @Transactional(readOnly = true)
     public List<Cita> getCitasFecha(String fecha)
     {      
         try {
@@ -66,7 +67,7 @@ public class CitaServiceImpl implements CitaService
             List<Cita> citasFiltradas = new ArrayList<>();
 
             for (Cita cita : listadoCitas) {
-                if (cita.getEstado() && cita.getCorreo().isBlank()) {
+                if (cita.getEstado()) {
                     citasFiltradas.add(cita);
                 }
             }
@@ -79,24 +80,20 @@ public class CitaServiceImpl implements CitaService
     }
     
     @Override
-    public void agendarCita(Long idCita, String correo)
+    @Transactional
+    public void agendarCita(Cita cita, String correo)
     {
-        Optional<Cita> cita = citaDao.findById(idCita);
+        cita.setEstado(Boolean.FALSE);
+        cita.setTerminado(Boolean.FALSE);
+        cita.setCorreo(correo);
+            
+        // Guarda el valor actualizado en la base de datos
+        citaDao.save(cita);
 
-        // Verifica si el Optional contiene un valor
-        if (cita.isPresent()) {
-            // Obtén el valor del Optional
-            Cita citaValor = cita.get();
-            // Realiza operaciones con el valor
-            citaValor.setEstado(Boolean.FALSE);
-            citaValor.setCorreo(correo);
-
-            // Guarda el valor actualizado en la base de datos
-            citaDao.save(citaValor);
-        }
     }
     
     @Override
+    @Transactional(readOnly = true)
     public List<Cita> getCitasAgendadas()
     { 
             var listadoCitas = citaDao.findAll();
@@ -105,6 +102,7 @@ public class CitaServiceImpl implements CitaService
     }
     
     @Override
+    @Transactional(readOnly = true)
     public List<Cita> getCitasUsuario(String correo)
     { 
             var listadoCitas = citaDao.findAllByCorreo(correo);
@@ -113,8 +111,17 @@ public class CitaServiceImpl implements CitaService
     }
     
     @Override
+    @Transactional
     public void eliminarCita(Long idCita)
     {
         citaDao.deleteById(idCita);       
-    }    
+    }   
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Cita getCitaId(Long idCita)
+    {
+        var cita = citaDao.findById(idCita).orElse(null);
+        return cita;
+    } 
 }

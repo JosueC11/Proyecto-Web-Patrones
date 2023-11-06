@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.clinica.dao.UsuarioDao;
 import com.clinica.domain.Usuario;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -25,12 +26,14 @@ public class UsuarioServiceImpl implements UsuarioService
     }
     
     @Override
+    @Transactional
     public void registrarUsuario(Usuario usuario)
     {
         usuarioDao.save(usuario);
     }  
     
     @Override
+    @Transactional
     public void loguearUsuario(Usuario usuario)
     {
         

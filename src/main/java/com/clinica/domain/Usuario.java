@@ -15,7 +15,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "clientes")
+@Table(name = "usuarios")
 
 public class Usuario implements Serializable
 {
@@ -29,4 +29,6 @@ public class Usuario implements Serializable
     private String contrasena;
     @Column(name = "direccion_foto")
     private String direccionFoto;
+    @Column(name = "id_rol")
+    private Boolean idRol;
 }

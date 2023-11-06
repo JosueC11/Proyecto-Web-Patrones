@@ -32,6 +32,7 @@ public class MetodoPagoServiceImpl implements MetodoPagoService
     }
     
     @Override
+    @Transactional
     public void establecerMetodoPredeterminado(MetodoPago metodoPago)
     {
         metodoPagoDao.save(metodoPago);
@@ -39,9 +40,9 @@ public class MetodoPagoServiceImpl implements MetodoPagoService
     
     @Override
     @Transactional
-    public void agregarMetodoPago(MetodoPago metodoPago)
+    public void agregarMetodoPago(MetodoPago metodoPago, String usuario)
     {
-        metodoPago.setCorreo("OscarCañellas@gmail.com");
+        metodoPago.setCorreo(usuario);
         metodoPago.setPredeterminado(false);
         metodoPagoDao.save(metodoPago);
     }

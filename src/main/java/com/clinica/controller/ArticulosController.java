@@ -5,7 +5,9 @@
 package com.clinica.controller;
 
 import com.clinica.domain.Articulo;
+import com.clinica.domain.Usuario;
 import com.clinica.service.ArticuloService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,20 +31,43 @@ public class ArticulosController
 
     @Autowired
     private ArticuloService aS;
+    
+    @Autowired
+    private HttpSession httpSession;
 
     @GetMapping("/listar")
-    public String mostrarListado(Model model) {
-        var articulos = aS.getArticulos();
-        model.addAttribute("articulos", articulos);
-        model.addAttribute("articulo",  new Articulo());
-        return "/articulo/listado";
+    public String mostrarListado(Model model) 
+    {
+        String usuario = (String) httpSession.getAttribute("correo");
+        
+        if(usuario == null)
+        {
+            return "redirect:/usuario/login";
+        }
+        else
+        {
+            var articulos = aS.getArticulos();
+            model.addAttribute("articulos", articulos);
+            model.addAttribute("articulo",  new Articulo());
+            return "/articulo/listado";
+        }
     }
     
     @GetMapping("/listarcategoria/{categoria}")
-    public String mostrarListado(@PathVariable String categoria, Model model) {
-        var articulos = aS.getArticulosCategoria(categoria);
-        model.addAttribute("articulos", articulos);
-        return "/articulo/listado";
+    public String mostrarListado(@PathVariable String categoria, Model model) 
+    {
+        String usuario = (String) httpSession.getAttribute("correo");
+        
+        if(usuario == null)
+        {
+            return "redirect:/usuario/login";
+        }
+        else
+        {
+            var articulos = aS.getArticulosCategoria(categoria);
+            model.addAttribute("articulos", articulos);
+            return "/articulo/listado";
+        }
     }
     
     @PostMapping("/agregar")
@@ -59,16 +84,20 @@ public class ArticulosController
         return "redirect:/articulo/listar";
     }
     
-    @GetMapping("/agregarcarrito")
-    public String agregarCarrito(@ModelAttribute Articulo articulo) 
+    
+    //Proximante se va a implementar el carrito de compras 
+    
+    @GetMapping("/agregarcarrito/{idArticulo}")
+    public String agregarCarrito(@PathVariable Long idArticulo) 
     {
-        aS.agregarCarrito(articulo);
+        aS.agregarCarrito(idArticulo);
         return "redirect:/articulo/listar";
     }
     
     @GetMapping("/abrircarrito")
-    public String agregarCarrito() 
+    public String abrirCarrito() 
     {
         return "/articulo/carritocompras";
     }
 }
+

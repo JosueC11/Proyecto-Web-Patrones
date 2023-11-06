@@ -5,7 +5,9 @@
 package com.clinica.controller;
 
 import com.clinica.domain.MetodoPago;
+import com.clinica.domain.Usuario;
 import com.clinica.service.MetodoPagoService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,20 +25,34 @@ public class MetodosPagoController{
     
     @Autowired
     private MetodoPagoService mps;
+    
+    @Autowired
+    private HttpSession httpSession;
         
     @GetMapping("/listar")
-    public String mostrarListado(Model model) {
-        var metodos = mps.getMetodosPagos("OscarCañellas@gmail.com");
-        model.addAttribute("metodos", metodos);
-        model.addAttribute("metodoPago",  new MetodoPago());
-        return "/metodopago/listado";
+    public String mostrarListado(Model model) 
+    {
+        String usuario = (String) httpSession.getAttribute("correo");
+        
+        if(usuario == null)
+        {
+            return "redirect:/usuario/login";
+        }
+        else
+        {
+            var metodos = mps.getMetodosPagos(usuario);
+            model.addAttribute("metodos", metodos);
+            model.addAttribute("metodoPago",  new MetodoPago());
+            return "/metodopago/listado";
+        }
     }
    
     
     @PostMapping("/agregar")
     public String agregarMedotoPago(@ModelAttribute MetodoPago metodoPago)
     {
-        mps.agregarMetodoPago(metodoPago);
+        String usuario = (String) httpSession.getAttribute("correo");
+        mps.agregarMetodoPago(metodoPago, usuario);
         return "redirect:/metodopago/listar";     
     }  
     

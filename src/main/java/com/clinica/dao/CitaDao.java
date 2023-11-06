@@ -19,6 +19,5 @@ import org.springframework.stereotype.Repository;
 public interface CitaDao extends JpaRepository<Cita,Long> 
 {  
     public List<Cita> findAllByFecha(Date fecha);
-    
-    public List<Cita> findAllByCorreo(String correo);   
+    public List<Cita> findAllByCorreo(String correo); 
 }

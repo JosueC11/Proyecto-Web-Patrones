@@ -5,6 +5,7 @@
 package com.clinica.service;
 
 import com.clinica.domain.Articulo;
+import com.clinica.domain.Carrito;
 import java.util.List;
 
 /**
@@ -22,5 +23,7 @@ public interface ArticuloService
     
     public void eliminarArticulo(Long IdArticulo);   
     
-    public void agregarCarrito(Articulo articulo);  
+    public void agregarCarrito(Long idArticulo);  
+    
+    public List<Carrito> getCarrito(String correo);
 }

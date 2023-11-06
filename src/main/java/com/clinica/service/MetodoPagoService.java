@@ -14,7 +14,7 @@ public interface MetodoPagoService
     
     public void establecerMetodoPredeterminado(MetodoPago metodoPago);
     
-    public void agregarMetodoPago(MetodoPago metodoPago);
+    public void agregarMetodoPago(MetodoPago metodoPago, String usuario);
     
     public void eliminarMetodoPago(String numeroTarjeta); 
 }

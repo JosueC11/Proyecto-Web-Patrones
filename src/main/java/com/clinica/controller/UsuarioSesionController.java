@@ -38,7 +38,7 @@ public class UsuarioSesionController
     @PostMapping("/registrar")
     public String registrarUsuario(@ModelAttribute Usuario usuario) {
         us.registrarUsuario(usuario);
-        return "index";
+        return "redirect:/usuario/login";
     }   
     
     @GetMapping("/login")
@@ -51,11 +51,16 @@ public class UsuarioSesionController
 
     @PostMapping("/loguear")
     public String loguearUsuario(@ModelAttribute Usuario usuario, Model model) {
+        
         Usuario usuarioRegistrado = us.getUsuarioRegistro(usuario.getCorreo());
-        if (usuarioRegistrado != null) {
-            if (usuarioRegistrado.getContrasena().equals(usuario.getContrasena())) { 
+        
+        if (usuarioRegistrado != null) 
+        {
+            if (usuarioRegistrado.getContrasena().equals(usuario.getContrasena())) 
+            { 
                 model.addAttribute("bienvenida", "¡Bienvenido, " + usuarioRegistrado.getNombre() + "!");
-                httpSession.setAttribute("usuario", usuario);
+                httpSession.setAttribute("correo", usuario.getCorreo());
+                httpSession.setAttribute("rol", usuario.getIdRol());             
                 return "index";
             }
         }
@@ -64,10 +69,20 @@ public class UsuarioSesionController
     }
     
     @GetMapping("/perfil")
-    public String perfilUsuario(Model model) {
-        Usuario usuario = new Usuario();
-        model.addAttribute("usuario", usuario);
-        return "/usuario/perfilUsuario";
+    public String perfilUsuario(Model model) 
+    {
+        String usuario = (String) httpSession.getAttribute("correo");
+        
+        if(usuario == null)
+        {
+            return "redirect:/usuario/login";
+        }
+        else
+        {
+            Usuario usuarioModel = new Usuario();
+            model.addAttribute("usuario", usuarioModel);
+            return "/usuario/perfilUsuario";
+        }
     }
     
     @PostMapping("/informacion")

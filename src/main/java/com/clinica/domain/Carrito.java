@@ -6,33 +6,29 @@ package com.clinica.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.sql.Date;
-import java.sql.Time;
 import lombok.Data;
 
 /**
  *
  * @author Josuu
  */
-
 @Data
 @Entity
-@Table(name="citas")
-public class Cita 
-{
-    private static final long serialVersionUID = 1L;
-    
+@Table(name="carrito")
+public class Carrito {
+
     @Id
-    @Column(name="id_cita")
-    private Long idCita;
-    private Date fecha;
-    private Time hora;
-    @Column(name="nombre_doctor")
-    private String nombreDoctor;
-    private Boolean estado;
-    private String descripcion;
+    @Column(name="id_articulo")
+    private Long idArticulo;
+    private String marca;
+    private String nombre;
+    private Double precio;
+    private boolean estado;
+    private String categoria;
     private String correo;
-    private Boolean terminado;
-}
+}   
+

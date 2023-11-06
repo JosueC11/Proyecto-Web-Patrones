@@ -30,13 +30,15 @@ public class AgendaController
     @GetMapping("/listar")
     public String mostrarListado(HttpSession httpSession, Model model) 
     {
-        Usuario usuario = (Usuario) httpSession.getAttribute("usuario");
+        String usuario = (String) httpSession.getAttribute("correo");
+        
         if(usuario == null)
         {
             return "redirect:/usuario/login";
-        }else
+        }
+        else
         {
-            var citasAgendadas = cS.getCitasUsuario(usuario.getCorreo());
+            var citasAgendadas = cS.getCitasUsuario(usuario);
             model.addAttribute("agenda", citasAgendadas);
             return "/agenda/listado";           
         }

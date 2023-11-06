@@ -37,6 +37,11 @@
                         <br/>
                         <button id="mostrarContrasena" type="button">[[#{registrarse.mostrarContraseña}]]</button>
                 </div>
+                <div class="mb-3">
+                    <label for="rol" class="form-label">[[#{registrarse.rol}]]</label>
+                    <input type="checkbox" class="form-check-input" id="rol" th:field="*{idRol}" required>
+                </div>
+
                 <button type="submit" class="btn btn-primary">[[#{registrarse.registrarse}]]</button>
             </form>
         </div>
