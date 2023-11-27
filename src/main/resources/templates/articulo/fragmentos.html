@@ -13,26 +13,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <br/>
             <div class="container">
                 <div class="dropdown d-flex bd-highlight mb-3">
+                    <div class="col-md-2" th:if="${rol == 2}">   
+                        <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#agregarArticulo">
+                            <i class="fa-solid fa-circle-plus"></i>Agregar
+                        </button>
+                    </div>
                     <button class="btn btn-secondary dropdown-toggle me-auto p-2 bd-highlightt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         [[#{articulo.categoría}]]
                     </button>
-                    <div class="col-md-2" th:if="${rol == 2}">   
-                        <a class="btn btn-info" type="button" th:href="@{/resena/listar}">
-                            <i class="fa-solid fa-circle-plus"></i>[[#{resena.todas}]]
-                        </a>
+                    <div class="p-2 bd-highlight" th:if="${rol == 1}">
+                        [[#{articulo.artículos}]]
                     </div>
-                    <div class="p-2 bd-highlight">
-                        [[#{articulo.artículos}]]: 0
-                    </div>
-                    <div class="p-2 bd-highlight">
+                    <div class="p-2 bd-highlight" th:if="${rol == 1}">
                         <a th:href="@{/articulo/abrircarrito}" class="btn btn-success">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </a>
                     </div>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" th:href="@{/articulo/listar}">[[#{articulo.todas}]]</a></li>
-                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Cepillo Dental}">[[#{articulo.pastadental}]]</a></li>
-                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Pasta Dental}">[[#{articulo.cepilldodental}]]</a></li>
+                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Cepillo Dental}">[[#{articulo.cepilldodental}]]</a></li>
+                        <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Pasta Dental}">[[#{articulo.pastadental}]]</a></li>
                         <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Hilo Dental}">[[#{articulo.hilodental}]]</a></li>
                         <li><a class="dropdown-item" th:href="@{/articulo/listarcategoria/Ligas}">[[#{articulo.ligas}]]</a></li>
                     </ul>
@@ -61,9 +61,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td th:text="${articulo.estado} ? 'Disponible' : 'Agotado'">
                                 </td>
                                 <td>
-                                    <a th:href="@{#}" th:if="${articulo.estado}"
-                                       class="btn btn-success">
-                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    <a th:if="${rol == 1 and articulo.estado == true}" th:href="@{/articulo/agregarcarrito/}+${articulo.idArticulo}"
+                                        class="btn btn-info">
+                                        <i class="fa-solid fa-address-book"></i>
+                                    </a>
+                                    <a th:if="${rol == 2}" th:href="@{/articulo/eliminar/}+${articulo.idArticulo}" 
+                                       class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -86,7 +90,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         [[#{articulo.categoría}]]
                     </button>
                     <div class="p-2 bd-highlight">
-                        [[#{articulo.artículos}]]: 0 
+                        [[#{articulo.artículos}]]
                     </div>
                     <div class="p-2 bd-highlight">
                         <a class="btn btn-success">
@@ -105,19 +109,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <th>[[#{articulo.marca}]]</th>
                                 <th>[[#{articulo.nombre}]]</th>
                                 <th>[[#{articulo.precio}]]</th>
-                                <th>[[#{articulo.estado}]]</th>
                                 <th>[[#{articulo.opcion}]]</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td/>
-                                <td/>
-                                <td/>
-                                <td/>
-                                <td/>
+                            <tr th:each="articulo: ${articulosCarrito}">
+                                <td th:text="${articulo.categoria}"/>
+                                <td th:text="${articulo.marca}"/>
+                                <td th:text="${articulo.nombre}"/>
+                                <td th:text="${articulo.precio}"/>
+                                </td>
                                 <td>
-                                    <a class="btn btn-success">
+                                    <a class="btn btn-" th:href="@{/articulo/eliminarArticuloCarrito/}+${articulo.consecutivo}">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
@@ -126,9 +129,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </table>
                     <div class="container">
                         <div class="d-flex justify-content-center align-items-center">
-                            <button class="btn btn-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="btn btn-success" th:href="@{/articulo/pagarCarrito}" type="button" aria-expanded="false">
                                 [[#{articulo.pagar}]]
-                            </button>
+                            </a>
                             <div class="mx-3"></div> <!-- Espacio horizontal -->
                             <a class="btn btn-success" th:href="@{/articulo/listar}">[[#{articulo.volver}]]</a>
                         </div>
@@ -141,8 +144,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <br/>
             <br/>
         </section>
-        <section th:fragment="agregarCita" class="py-4 mb-4">
-            <div id="agregarCita" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <section th:fragment="agregarArticulo" class="py-4 mb-4">
+            <div id="agregarArticulo" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-md formularios">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -158,30 +161,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <img id="blah" src="#" alt="your image" height="200"/>
                             </div>
                             <div class="col-12">
-                                <label for="marca" class="form-label">Puntos</label>
-                                <input type="text" class="form-control" min="1" max="5" id="marca" th:field="*{marca}" required>
+                                <label for="marca" class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="marca" th:field="*{marca}" required>
                             </div>
                             <div class="col-12">
-                                <label for="nombre" class="form-label">Puntos</label>
-                                <input type="text" class="form-control" min="1" max="5" id="inputAddress2" th:field="*{nombre}" required>
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" min="1" max="5" id="nombre" th:field="*{nombre}" required>
                             </div>
                             <div class="col-12">
-                                <label for="categoria" class="form-label">Puntos</label>
-                                <select class="form-select" id="inputAddress2" th:field="*{puntos}" required>
-                                    <option value="Cepillo Dental"></option>
-                                    <option value="Pasta Dentall"></option>
-                                    <option value="Hilo Dental"></option>
-                                    <option value="Ligas"></option>
+                                <label for="categoria" class="form-label">Categoria</label>
+                                <select class="form-select" id="inputAddress2" th:field="*{categoria}" required>
+                                    <option value="Cepillo Dental">Cepillo Dental</option>
+                                    <option value="Pasta Dental">Pasta Dental</option>
+                                    <option value="Hilo Dental">Hilo Dental</option>
+                                    <option value="Ligas">Ligas</option>
                                 </select>
                             </div>
-
                             <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Puntos</label>
-                                <input type="text" class="form-control" min="1" max="5" id="inputAddress2" th:field="*{precio}" required>
+                                <label for="precio" class="form-label">Precio</label>
+                                <input type="number" class="form-control" id="precio" th:field="*{precio}" required>
                             </div>
                             <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Puntos</label>
-                                <input type="text" class="form-control" min="1" max="5" id="inputAddress2" th:field="*{precio}" required>
+                                <label for="estado" class="form-label">Estado</label>
+                                <input type="checkbox" class="form-check-input" id="estado" th:field="*{estado}">
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">[[#{resenas.agregar}]]</button>

@@ -48,6 +48,7 @@ public class ArticulosController
         {
             var articulos = aS.getArticulos();
             model.addAttribute("articulos", articulos);
+            model.addAttribute("rol", httpSession.getAttribute("rol"));
             model.addAttribute("articulo",  new Articulo());
             return "/articulo/listado";
         }
@@ -66,6 +67,8 @@ public class ArticulosController
         {
             var articulos = aS.getArticulosCategoria(categoria);
             model.addAttribute("articulos", articulos);
+            model.addAttribute("rol", httpSession.getAttribute("rol"));
+            model.addAttribute("articulo",  new Articulo());
             return "/articulo/listado";
         }
     }
@@ -85,19 +88,39 @@ public class ArticulosController
     }
     
     
-    //Proximante se va a implementar el carrito de compras 
+    //Proximante se va a implementar el pago con factura
     
     @GetMapping("/agregarcarrito/{idArticulo}")
     public String agregarCarrito(@PathVariable Long idArticulo) 
     {
-        aS.agregarCarrito(idArticulo);
+        String usuario = (String) httpSession.getAttribute("correo");
+        
+        aS.agregarCarrito(idArticulo,usuario);
         return "redirect:/articulo/listar";
     }
     
     @GetMapping("/abrircarrito")
-    public String abrirCarrito() 
+    public String abrirCarrito(Model model) 
     {
+        String usuario = (String) httpSession.getAttribute("correo");
+        var articulosCarrito = aS.getCarrito(usuario);
+        model.addAttribute("articulosCarrito", articulosCarrito);
         return "/articulo/carritocompras";
+    }
+    
+    @GetMapping("/eliminarArticuloCarrito/{idArticulo}")
+    public String eliminarArticuloCarrito(@PathVariable Long idArticulo) 
+    {
+        aS.eliminarArticuloCarrito(idArticulo);
+        return "redirect:/articulo/abrircarrito";
+    }
+    
+    @GetMapping("/pagarCarrito")
+    public String pagarCarrito() 
+    {
+        String usuario = (String) httpSession.getAttribute("correo");
+        aS.pagarCarrito(usuario);
+        return "redirect:/articulo/abrircarrito";
     }
 }
 

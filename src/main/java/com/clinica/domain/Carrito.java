@@ -20,8 +20,12 @@ import lombok.Data;
 @Entity
 @Table(name="carrito")
 public class Carrito {
+    
+    private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long consecutivo;
     @Column(name="id_articulo")
     private Long idArticulo;
     private String marca;

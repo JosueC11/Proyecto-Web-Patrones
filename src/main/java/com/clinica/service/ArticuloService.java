@@ -23,7 +23,11 @@ public interface ArticuloService
     
     public void eliminarArticulo(Long IdArticulo);   
     
-    public void agregarCarrito(Long idArticulo);  
+    public void agregarCarrito(Long idArticulo, String correo);  
     
     public List<Carrito> getCarrito(String correo);
+    
+    public void eliminarArticuloCarrito(Long consecutivo);
+    
+    public void pagarCarrito(String correo);
 }

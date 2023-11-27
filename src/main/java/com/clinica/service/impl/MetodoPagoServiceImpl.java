@@ -33,9 +33,22 @@ public class MetodoPagoServiceImpl implements MetodoPagoService
     
     @Override
     @Transactional
-    public void establecerMetodoPredeterminado(MetodoPago metodoPago)
+    public void establecerMetodoPredeterminado(String numeroTarjeta)
     {
-        metodoPagoDao.save(metodoPago);
+        var listaMetodos = metodoPagoDao.findAll();
+        for(MetodoPago MetedoPago: listaMetodos)
+        {
+            if(MetedoPago.getNumeroTarjeta().equals(numeroTarjeta))
+            {
+                MetedoPago.setPredeterminado(true);
+                metodoPagoDao.save(MetedoPago);
+            }
+            else
+            {
+                MetedoPago.setPredeterminado(false);
+                metodoPagoDao.save(MetedoPago);
+            }           
+        }
     }
     
     @Override

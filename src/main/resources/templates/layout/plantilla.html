@@ -36,7 +36,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <li class="nav-item espaciado-index">
                                 <a class="nav-link una-linea" th:href="@{/cita/listar}">[[#{citas.titulo}]]</a>
                             </li>
-                            <li class="nav-item espaciado-index">
+                            <li class="nav-item espaciado-index" th:if="${rol == 1}">
                                 <a class="nav-link una-linea" th:href="@{/metodopago/listar}">[[#{metodopago.titulo}]]</a>
                             </li>
                             <li class="nav-item espaciado-index">
@@ -50,8 +50,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <ul class="submenu sin-vinetas">
                                     <li><a class="nav-link una-linea" th:href="@{/usuario/registro}">[[#{accion.registrarse}]]</a></li>
                                     <li><a class="nav-link una-linea" th:href="@{/usuario/login}">[[#{accion.iniciarsesion}]]</a></li>
-                                    <li><a class="nav-link una-linea" href="#">[[#{accion.verhistorial}]]</a></li>
-                                    <li><a class="nav-link una-linea" th:href="@{/agenda/listar}">[[#{accion.agenda}]]</a></li>
+                                    <li><a class="nav-link una-linea" th:if="${rol == 1}" href="#">[[#{accion.verhistorial}]]</a></li>
+                                    <li><a class="nav-link una-linea" th:if="${rol == 1}" th:href="@{/agenda/listar}">[[#{accion.agenda}]]</a></li>
                                     <li><a class="nav-link una-linea" th:href="@{#}">[[#{accion.perfil}]]</a></li>
                                 </ul>
                             </li>

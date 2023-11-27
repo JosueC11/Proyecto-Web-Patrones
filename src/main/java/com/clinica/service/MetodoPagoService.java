@@ -12,7 +12,7 @@ public interface MetodoPagoService
 {
     public List<MetodoPago> getMetodosPagos(String correo);
     
-    public void establecerMetodoPredeterminado(MetodoPago metodoPago);
+    public void establecerMetodoPredeterminado(String numeroTarjeta);
     
     public void agregarMetodoPago(MetodoPago metodoPago, String usuario);
     

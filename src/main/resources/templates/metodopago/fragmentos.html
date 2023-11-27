@@ -41,7 +41,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <a th:if="${metodo.predeterminado}">
                                                     <i class="fa-solid fa-check"></i>
                                                 </a>
-                                                <a th:if="${!metodo.predeterminado}">
+                                                <a th:if="${!metodo.predeterminado}" th:href="@{/metodopago/establecerPredeterminado/}+${metodo.numeroTarjeta}">
                                                     <i class="fa-solid fa-x"></i>
                                                 </a>
                                             </td>

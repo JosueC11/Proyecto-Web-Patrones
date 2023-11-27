@@ -91,11 +91,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <form class="row g-3" th:action="@{/resena/agregar}" th:object="${resena}"  method="POST">
                             <br/>
                             <div class="col-12">
-                                <label for="descripcion" class="form-label">Descripcion</label>
+                                <label for="descripcion" class="form-label">[[#{resena.descripcion}]]</label>
                                 <input type="text" class="form-control" id="inputAddress" th:field="*{descripcion}" required>
                             </div>
                             <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Puntos</label>
+                                <label for="inputAddress2" class="form-label">[[#{resena.puntos}]]</label>
                                 <input type="number" class="form-control" min="1" max="5" id="inputAddress2" th:field="*{puntos}" required>
                             </div>
                             <div class="col-12">

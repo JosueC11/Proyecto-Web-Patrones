@@ -10,6 +10,7 @@ import com.clinica.domain.Articulo;
 import com.clinica.domain.Carrito;
 import com.clinica.service.ArticuloService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,8 +61,23 @@ public class ArticuloServiceImpl implements ArticuloService
     
     @Override
     @Transactional
-    public void agregarCarrito(Long  idArticulo)
+    public void agregarCarrito(Long idArticulo, String correo)
     {
+        Optional<Articulo> articuloOptional = articuloDao.findById(idArticulo);
+
+        if (articuloOptional.isPresent()) {
+            Articulo articulo = articuloOptional.get();
+            
+            Carrito carrito = new Carrito();
+            carrito.setCategoria(articulo.getCategoria());
+            carrito.setIdArticulo(articulo.getIdArticulo());
+            carrito.setNombre(articulo.getNombre());
+            carrito.setMarca(articulo.getMarca());
+            carrito.setPrecio(articulo.getPrecio());
+            carrito.setEstado(true);
+            carrito.setCorreo(correo);          
+            carritoDao.save(carrito);
+        }
     }
     
     @Override
@@ -70,5 +86,19 @@ public class ArticuloServiceImpl implements ArticuloService
     {
         var listado = carritoDao.findAllByCorreo(correo);
         return listado;
+    }
+    
+    @Override
+    @Transactional
+    public void eliminarArticuloCarrito(Long consecutivo)
+    {
+        carritoDao.deleteByConsecutivo(consecutivo);
+    }
+    
+    @Override
+    @Transactional
+    public void pagarCarrito(String correo)
+    {
+        carritoDao.deleteAllByCorreo(correo);
     }
 }

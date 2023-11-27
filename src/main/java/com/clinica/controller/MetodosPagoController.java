@@ -62,4 +62,11 @@ public class MetodosPagoController{
         mps.eliminarMetodoPago(numeroTarjeta);
         return "redirect:/metodopago/listar";
     }
+    
+    @GetMapping("/establecerPredeterminado/{numeroTarjeta}")
+    public String establecerPredeterminado(@PathVariable String numeroTarjeta) 
+    {
+        mps.establecerMetodoPredeterminado(numeroTarjeta);
+        return "redirect:/metodopago/listar";
+    }
 }
