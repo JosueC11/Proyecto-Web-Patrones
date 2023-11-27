@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.clinica.controller;
 
 import jakarta.servlet.http.HttpSession;
@@ -10,22 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author Josuu
+ * @author Dennis
  */
-
 @Controller
 @Slf4j
-@RequestMapping("/")
-public class IndexController 
-{
-        @Autowired
+@RequestMapping("/sobreNosotros")
+public class SobreNosotrosController {
+  
+    @Autowired
     private HttpSession httpSession;
-    
-    @GetMapping()
+    @GetMapping("/info")
     public String mostrarListado(Model model) 
     {
         model.addAttribute("rol", httpSession.getAttribute("rol"));
-        return "index";       
+        return "/sobrenosotros/listado";  
     }
-     
 }

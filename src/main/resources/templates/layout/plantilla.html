@@ -14,6 +14,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <link href="/css/style.css" rel="stylesheet" type="text/css"/>
         <link href="/css/style_registro.css" rel="stylesheet" type="text/css"/>
         <link href="/css/style_login.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/style_historial.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/style_sobreNosotros.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/style_mostrarPerfil.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="body">
         <header th:fragment="header">
@@ -40,7 +43,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <a class="nav-link una-linea" th:href="@{/metodopago/listar}">[[#{metodopago.titulo}]]</a>
                             </li>
                             <li class="nav-item espaciado-index">
-                                <a class="nav-link una-linea" href="#" tabindex="-1" aria-disabled="true">[[#{hostorialclienico.titulo}]]</a>
+                                <a class="nav-link una-linea" th:href="@{/historialClinico/listar}" tabindex="-1" aria-disabled="true">[[#{hostorialclienico.titulo}]]</a>
                             </li>
                             <li class="nav-item espaciado-index">
                                 <a class="nav-link una-linea" th:href="@{/articulo/listar}" tabindex="-1" aria-disabled="true">[[#{articulos.titulo}]]</a>
@@ -52,7 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <li><a class="nav-link una-linea" th:href="@{/usuario/login}">[[#{accion.iniciarsesion}]]</a></li>
                                     <li><a class="nav-link una-linea" th:if="${rol == 1}" href="#">[[#{accion.verhistorial}]]</a></li>
                                     <li><a class="nav-link una-linea" th:if="${rol == 1}" th:href="@{/agenda/listar}">[[#{accion.agenda}]]</a></li>
-                                    <li><a class="nav-link una-linea" th:href="@{#}">[[#{accion.perfil}]]</a></li>
+                                    <li><a class="nav-link una-linea" th:href="@{/usuario/perfil}">[[#{accion.perfil}]]</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item espaciado-index">
@@ -79,7 +82,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <p class="alinear-item-footer una-linea">[[#{accion.masinfo}]]</p>
                             </li>
                             <li class="nav-item espaciado-index">
-                                <a class="nav-link una-linea" href="#">[[#{accion.sobrenosotros}]]</a>
+                                <a class="nav-link una-linea" th:href="@{/sobreNosotros/info}">[[#{accion.sobrenosotros}]]</a>
                             </li>
                             <li class="nav-item espaciado-index">
                                 <a class="nav-link una-linea" th:href="@{/resena/listar}">[[#{accion.resennas}]]</a>

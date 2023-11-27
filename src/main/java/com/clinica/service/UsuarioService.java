@@ -9,7 +9,9 @@ import com.clinica.domain.Usuario;
 
 public interface UsuarioService {
     
-    public Usuario getUsuarioRegistro(String cedulaCliente);
+    public Usuario getUsuarioRegistro(String correo);
     
-    public void registrarUsuario(Usuario usuario);   
+    public void registrarUsuario(Usuario usuario);
+    
+    public void editarUsuario(Usuario usuario);
 }

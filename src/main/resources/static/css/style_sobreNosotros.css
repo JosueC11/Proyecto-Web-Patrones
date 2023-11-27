@@ -1,0 +1,39 @@
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.section-title-sobrenosotros {
+    background-color: #A1D245;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 44%; /* Cambia max-content a 100% */
+}
+
+.subsection-container {
+    text-align: center;
+    background-color: #45B9AC;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.justify-text {
+    text-align: justify;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.subsection-title-sobrenosotros {
+    margin-bottom: 0;
+}

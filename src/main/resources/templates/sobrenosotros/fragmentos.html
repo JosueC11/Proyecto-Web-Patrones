@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>[[#{aplicacion.titulo}]]</title>
+    </head>
+    <body class="body sobre-nosotros">
+        <section th:fragment="mostrarInfo" class="info-container">
+                <h3 class="section-title-sobrenosotros">[[#{sobrenosotros.sobre}]]</h3>
+                <div class="subsection-container">
+                    <h4 class="subsection-title-sobrenosotros">[[#{sobrenosotros.nuestra}]]</h4>
+                    <p class="subsection-text-sobrenosotros justify-text">[[#{sobrenosotros.txtnuestra}]]</p>
+                </div>
+
+                <div class="subsection-container">
+                    <h4 class="subsection-title-sobrenosotros">[[#{sobrenosotros.nuestroCompromiso}]]</h4>
+                    <p class="subsection-text-sobrenosotros justify-text">[[#{sobrenosotros.compromiso}]]</p>
+                </div>
+
+                <div class="subsection-container">
+                    <h4 class="subsection-title-sobrenosotros">[[#{sobrenosotros.vision}]]</h4>
+                    <p class="subsection-text-sobrenosotros justify-text">[[#{sobrenosotros.txtvision}]]</p>
+                </div>
+            <div>
+                    </br>
+                    </br>
+                    </br>
+            </div>
+            <div class="subsection-container">
+                    <h4>[[#{sobrenosotros.dondeestamos}]]</h4>
+            </div>
+                <div>
+                    </br>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d584.3888713329926!2d-83.80378893591468!3d9.826492877627116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa127d104b5fe9f%3A0x9c108cd1f683d2de!2sSiggus!5e0!3m2!1ses!2scr!4v1701108474313!5m2!1ses!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div>
+                    </br>
+                </div>
+                <h5>[[#{sobrenosotros.direccion}]]</h5>
+            </br>
+        </section>
+    </body>
+</html>

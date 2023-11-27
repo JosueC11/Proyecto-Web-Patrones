@@ -38,6 +38,7 @@ public class AgendaController
         }
         else
         {
+            model.addAttribute("rol", httpSession.getAttribute("rol"));
             var citasAgendadas = cS.getCitasUsuario(usuario);
             model.addAttribute("agenda", citasAgendadas);
             return "/agenda/listado";           

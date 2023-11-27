@@ -40,6 +40,7 @@ public class MetodosPagoController{
         }
         else
         {
+            model.addAttribute("rol", httpSession.getAttribute("rol"));
             var metodos = mps.getMetodosPagos(usuario);
             model.addAttribute("metodos", metodos);
             model.addAttribute("metodoPago",  new MetodoPago());

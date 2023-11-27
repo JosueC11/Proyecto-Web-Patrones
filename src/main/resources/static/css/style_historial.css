@@ -1,0 +1,31 @@
+/* Ajustes para los indicadores del carrusel */
+.carousel-indicators {
+    bottom: 10px; /* Posición de los indicadores con respecto al fondo */
+}
+
+.carousel-title {
+    text-align: center;
+    background-color: #A1D245;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.carousel-section {
+            max-width: 600px;
+            margin: auto;
+            margin-bottom: 30px; /* Ajusta el margen inferior según tus preferencias */
+        }
+
+.carousel-item-title {
+    background-color: #A1D245;
+    color: white;
+    padding: 10px; /* Puedes ajustar este valor según tus necesidades */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-left: 500px; /* Ajusta este valor según tus necesidades */
+    margin-right: 500px; /* Ajusta este valor según tus necesidades */
+}
+        
