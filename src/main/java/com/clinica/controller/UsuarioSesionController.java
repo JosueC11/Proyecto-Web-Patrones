@@ -60,7 +60,8 @@ public class UsuarioSesionController
             { 
                 model.addAttribute("bienvenida", "¡Bienvenido, " + usuarioRegistrado.getNombre() + "!");
                 httpSession.setAttribute("correo", usuario.getCorreo());
-                httpSession.setAttribute("rol", usuario.getIdRol());             
+                httpSession.setAttribute("rol", usuarioRegistrado.getIdRol());     
+                System.out.println(usuarioRegistrado.getIdRol());
                 return "index";
             }
         }
@@ -79,6 +80,7 @@ public class UsuarioSesionController
         }
         else
         {
+            var perfil = us.getUsuarioRegistro(usuario);
             Usuario usuarioModel = new Usuario();
             model.addAttribute("usuario", usuarioModel);
             return "/usuario/perfilUsuario";

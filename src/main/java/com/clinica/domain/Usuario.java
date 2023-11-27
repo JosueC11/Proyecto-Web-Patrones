@@ -28,5 +28,5 @@ public class Usuario implements Serializable
     @Column(name = "direccion_foto")
     private String direccionFoto;
     @Column(name = "id_rol")
-    private Boolean idRol;
+    private int idRol;
 }

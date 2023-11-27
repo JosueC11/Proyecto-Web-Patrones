@@ -13,6 +13,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <section th:fragment="listado">
             <br/>
             <div class="container">
+                <div class="d-flex">
+                    <div class="p-2 flex-shrink-1">
+                        <a th:if="${rol == 2}" th:href="@{/cita/listarCitasAgendadas}" 
+                           class="btn btn-info">
+                            <i class="fa-solid fa-address-book"></i>[[#{cita.listarAgendadas}]]
+                        </a>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end">
                     <div class="p-2 flex-shrink-1">
                         <form th:action="@{/cita/listarfecha}" method="post">
@@ -36,7 +44,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <th>[[#{aplicacion.nombreDoctor}]]</th>
                                 <th>[[#{cita.fecha}]]</th>
                                 <th>[[#{cita.hora}]]</th>
-                                <th>[[#{aplicacion.opcion}]]</th>
+                                <th th:if="${modo == 'agendadas'}">
+                                    Foto User
+                                </th>
+                                <th th:unless="${modo == 'agendadas'}">
+                                    [[#{aplicacion.opcion}]]
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,9 +58,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td th:text="${cita.fecha}"/>
                                 <td th:text="${cita.hora}"/>
                                 <td>
-                                    <a th:href="@{/cita/traercita/}+${cita.idCita}"
+                                    <a th:if="${rol == 1}" th:href="@{/cita/traercita/}+${cita.idCita}"
                                         class="btn btn-info">
                                         <i class="fa-solid fa-address-book"></i>
+                                    </a>
+                                    <a th:if="${rol == 2}" th:href="@{/cita/eliminar/}+${cita.idCita}" 
+                                       class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>

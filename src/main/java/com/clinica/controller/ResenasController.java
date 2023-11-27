@@ -1,6 +1,7 @@
 package com.clinica.controller;
 
 import com.clinica.domain.Cita;
+import com.clinica.domain.MetodoPago;
 import com.clinica.domain.Resena;
 import com.clinica.service.ResenaService;
 import jakarta.servlet.http.HttpSession;
@@ -43,6 +44,7 @@ public class ResenasController
         {
             var resenas = resenaService.getResenas();
             model.addAttribute("resenas", resenas);
+            model.addAttribute("resena",  new Resena());
             model.addAttribute("rol", httpSession.getAttribute("rol"));
             return "/resena/listado";
         }
@@ -54,7 +56,13 @@ public class ResenasController
         String usuario = (String) httpSession.getAttribute("correo");
         var resenas = resenaService.getResenasUser(usuario);
         model.addAttribute("resenas", resenas);
+        model.addAttribute("resena",  new Resena());
         model.addAttribute("rol", httpSession.getAttribute("rol"));
+        model.addAttribute("correo", httpSession.getAttribute("correo"));
+        for(Resena r: resenas)
+        {
+            System.out.print(r.getCorreo());
+        }
         return "/resena/listado";    
     }
     

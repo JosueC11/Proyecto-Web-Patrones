@@ -16,6 +16,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <button class="btn btn-secondary dropdown-toggle me-auto p-2 bd-highlightt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         [[#{articulo.categoría}]]
                     </button>
+                    <div class="col-md-2" th:if="${rol == 2}">   
+                        <a class="btn btn-info" type="button" th:href="@{/resena/listar}">
+                            <i class="fa-solid fa-circle-plus"></i>[[#{resena.todas}]]
+                        </a>
+                    </div>
                     <div class="p-2 bd-highlight">
                         [[#{articulo.artículos}]]: 0
                     </div>
@@ -135,6 +140,58 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </div>
             <br/>
             <br/>
+        </section>
+        <section th:fragment="agregarCita" class="py-4 mb-4">
+            <div id="agregarCita" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md formularios">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">[[#{resenas.agregar}]]</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <br/>
+                        <form class="row g-3" th:action="@{/articulo/agregar}" th:object="${articulo}"  method="POST">
+                            <br/>
+                            <div class="mb-3">
+                                <label for="imagen">[[#{articulo.imagen}]]</label>
+                                <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                <img id="blah" src="#" alt="your image" height="200"/>
+                            </div>
+                            <div class="col-12">
+                                <label for="marca" class="form-label">Puntos</label>
+                                <input type="text" class="form-control" min="1" max="5" id="marca" th:field="*{marca}" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="nombre" class="form-label">Puntos</label>
+                                <input type="text" class="form-control" min="1" max="5" id="inputAddress2" th:field="*{nombre}" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="categoria" class="form-label">Puntos</label>
+                                <select class="form-select" id="inputAddress2" th:field="*{puntos}" required>
+                                    <option value="Cepillo Dental"></option>
+                                    <option value="Pasta Dentall"></option>
+                                    <option value="Hilo Dental"></option>
+                                    <option value="Ligas"></option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="inputAddress2" class="form-label">Puntos</label>
+                                <input type="text" class="form-control" min="1" max="5" id="inputAddress2" th:field="*{precio}" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress2" class="form-label">Puntos</label>
+                                <input type="text" class="form-control" min="1" max="5" id="inputAddress2" th:field="*{precio}" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">[[#{resenas.agregar}]]</button>
+                            </div>
+                            <br/>
+                        </form>
+                        <br/>
+                    </div>
+                </div>  
+            </div>
         </section>
     </body>
 </html>

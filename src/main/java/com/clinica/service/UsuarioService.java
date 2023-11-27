@@ -11,8 +11,5 @@ public interface UsuarioService {
     
     public Usuario getUsuarioRegistro(String cedulaCliente);
     
-    public void registrarUsuario(Usuario usuario);
-    
-    public void loguearUsuario(Usuario usuario);
-    
+    public void registrarUsuario(Usuario usuario);   
 }

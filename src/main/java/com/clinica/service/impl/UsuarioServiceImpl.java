@@ -31,12 +31,5 @@ public class UsuarioServiceImpl implements UsuarioService
     {
         usuarioDao.save(usuario);
     }  
-    
-    @Override
-    @Transactional
-    public void loguearUsuario(Usuario usuario)
-    {
-        
-    } 
 }
 

@@ -31,7 +31,7 @@ public class CitasController
 {
 
     @Autowired
-    private CitaService cS;
+    private CitaService citasService;
     
     @Autowired
     private HttpSession httpSession;
@@ -47,7 +47,7 @@ public class CitasController
         }
         else
         {
-            var citas = cS.getCitas();
+            var citas = citasService.getCitas();
             model.addAttribute("citas", citas);
             model.addAttribute("rol", httpSession.getAttribute("rol"));
             return "/cita/listado";
@@ -57,8 +57,9 @@ public class CitasController
     @PostMapping("/listarfecha")
     public String mostrarListadoFecha(@RequestParam("fecha") String fecha, Model model) 
     {    
-        var citas = cS.getCitasFecha(fecha);
+        var citas = citasService.getCitasFecha(fecha);
         model.addAttribute("citas", citas);
+        model.addAttribute("rol", httpSession.getAttribute("rol"));
         return "/cita/listado";    
     }
     
@@ -66,14 +67,14 @@ public class CitasController
     public String agendarCita(@ModelAttribute Cita citaAgendar)
     {
         String usuario = (String) httpSession.getAttribute("correo");
-        cS.agendarCita(citaAgendar,usuario);
+        citasService.agendarCita(citaAgendar,usuario);
         return "redirect:/cita/listar";     
     }  
     
     @GetMapping("/traercita/{idCita}")
     public String agendarCita(@PathVariable Long idCita, Model model)
     {
-        var cita = cS.getCitaId(idCita);
+        var cita = citasService.getCitaId(idCita);
         model.addAttribute("cita", cita);
         return "/cita/agenda";     
     }  
@@ -82,13 +83,16 @@ public class CitasController
     @GetMapping("/eliminar/{idCita}")
     public String eliminarCita(@PathVariable Long idCita) 
     {
-        cS.eliminarCita(idCita);
+        citasService.eliminarCita(idCita);
         return "redirect:/cita/listar";
     }
     
     @GetMapping("/listarCitasAgendadas")    
-    public String mostrarCitasAgendadas() 
+    public String mostrarCitasAgendadas(Model model) 
     {
-        return"";
+        var citas = citasService.getCitasAgendadas();
+        model.addAttribute("citas", citas);
+        model.addAttribute("modo", "agendadas");
+        return "/cita/listado";
     }
 }
