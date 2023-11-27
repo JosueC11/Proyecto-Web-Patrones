@@ -49,6 +49,7 @@ public class CitasController
         {
             var citas = cS.getCitas();
             model.addAttribute("citas", citas);
+            model.addAttribute("rol", httpSession.getAttribute("rol"));
             return "/cita/listado";
         }
     }
