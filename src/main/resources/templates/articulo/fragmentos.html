@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="dropdown d-flex bd-highlight mb-3">
                     <div class="col-md-2" th:if="${rol == 2}">   
                         <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#agregarArticulo">
-                            <i class="fa-solid fa-circle-plus"></i>Agregar
+                            <i class="fa-solid fa-circle-plus"></i>[[#{articulo.agregarA}]]
                         </button>
                     </div>
                     <button class="btn btn-secondary dropdown-toggle me-auto p-2 bd-highlightt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -171,10 +171,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <div class="col-12">
                                 <label for="categoria" class="form-label">Categoria</label>
                                 <select class="form-select" id="inputAddress2" th:field="*{categoria}" required>
-                                    <option value="Cepillo Dental">Cepillo Dental</option>
-                                    <option value="Pasta Dental">Pasta Dental</option>
-                                    <option value="Hilo Dental">Hilo Dental</option>
-                                    <option value="Ligas">Ligas</option>
+                                    <option value="Cepillo Dental">[[#{categoria.cepillo}]]</option>
+                                    <option value="Pasta Dental">[[#{categoria.pasta}]]</option>
+                                    <option value="Hilo Dental">[[#{categoria.hilo}]]</option>
+                                    <option value="Ligas">[[#{categoria.ligas}]]</option>
                                 </select>
                             </div>
                             <div class="col-12">
@@ -186,7 +186,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <input type="checkbox" class="form-check-input" id="estado" th:field="*{estado}">
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">[[#{resenas.agregar}]]</button>
+                                <button type="submit" class="btn btn-primary">[[#{aplicacion.accion}]]</button>
                             </div>
                             <br/>
                         </form>
