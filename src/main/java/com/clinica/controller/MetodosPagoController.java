@@ -5,7 +5,6 @@
 package com.clinica.controller;
 
 import com.clinica.domain.MetodoPago;
-import com.clinica.domain.Usuario;
 import com.clinica.service.MetodoPagoService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +53,7 @@ public class MetodosPagoController{
     {
         String usuario = (String) httpSession.getAttribute("correo");
         mps.agregarMetodoPago(metodoPago, usuario);
+        mps.establecerMetodoPredeterminado(metodoPago.getNumeroTarjeta());
         return "redirect:/metodopago/listar";     
     }  
     

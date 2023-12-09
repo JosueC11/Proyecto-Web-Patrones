@@ -40,15 +40,13 @@
                 <div class="mb-3">
                     <label for="rol" class="form-label">[[#{registrarse.rol}]]</label>
                     <input type="number"  min="1" max="2" class="form-input" id="rol" th:field="*{idRol}" required>
-                </div>
-
+                </div>               
+                <p class="d-flex justify-content-center align-items-center error-message" th:if="${error}" th:text="${error}" style="margin-top: 1em; color: red"></p>
                 <button type="submit" class="btn btn-primary">[[#{registrarse.registrarse}]]</button>
             </form>
         </div>
         <br/>
         <footer th:replace="~{layout/plantilla :: footer}"></footer>
-
-        <!-- Codigo de JavaScript que permite intercambiar el espacio de la contraseña para visualizarla -->
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {

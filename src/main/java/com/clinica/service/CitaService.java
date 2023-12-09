@@ -27,5 +27,9 @@ public interface CitaService
     
     public List<Cita> getCitasUsuario(String correo);
 
-    public void eliminarCita(Long idCita);             
+    public void eliminarCita(Long idCita);      
+    
+    public void citaTerminar(Long idCita);
+    
+    public List<Cita> getHistorial(String correo);
 }

@@ -9,19 +9,16 @@
             <br/>
             <div class="container">
                 <br/>
-                <h4>[[#{agenda.titulo}]]</h4>
+                <h4>[[#{historial.titulo}]]</h4>
                 <br/>
                 <div class="d-flex justify-content-between color-header padding-5">
                     <h5>
-                        [[#{perfUsuario.fotoPerfil}]]
-                    </h5>
-                    <h5>
-                        [[#{agenda.consultas}]]
+                        [[#{historial.mi}]]
                     </h5>  
                 </div>
                 <br/>
                 <br/>
-                <div th:if="${agenda != null and !agenda.empty}">
+                <div th:if="${historial != null and !historial.empty}">
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
@@ -29,19 +26,23 @@
                                 <th>[[#{cita.descripcion}]]</th>
                                 <th>[[#{cita.fecha}]]</th>
                                 <th>[[#{cita.hora}]]</th>
+                                <th>[[#{cita.estado}]]</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="agend: ${agenda}">
-                                <td th:text="${agend.nombreDoctor}"/>
-                                <td th:text="${agend.descripcion}"/>
-                                <td th:text="${agend.fecha}"/>
-                                <td th:text="${agend.hora}"/>
+                            <tr th:each="cita: ${historial}">
+                                <td th:text="${cita.nombreDoctor}"/>
+                                <td th:text="${cita.descripcion}"/>
+                                <td th:text="${cita.fecha}"/>
+                                <td th:text="${cita.hora}"/>
+                                <td th:if="${cita.terminado}">
+                                    Terminado                                   
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center p-2" th:if="${agenda == null or agenda.empty}">
+                <div class="text-center p-2" th:if="${historial == null or historial.empty}">
                     <span>[[#{agenda.noAgendas}]]</span>
                 </div>
             </div>

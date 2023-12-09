@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/agenda")
-public class AgendaController 
+@RequestMapping("/historial")
+public class Historial
 {
     @Autowired
     private CitaService cS;
 
     @GetMapping("/listar")
-    public String mostrarListado(HttpSession httpSession, Model model) 
+    public String mostrarHistorial(HttpSession httpSession, Model model) 
     {
         String usuario = (String) httpSession.getAttribute("correo");
         
@@ -34,9 +34,9 @@ public class AgendaController
         else
         {
             model.addAttribute("rol", httpSession.getAttribute("rol"));
-            var citasAgendadas = cS.getCitasUsuario(usuario);
-            model.addAttribute("agenda", citasAgendadas);
-            return "/agenda/listado";           
+            var historial = cS.getCitasUsuario(usuario);
+            model.addAttribute("historial", historial);
+            return "/historial/listado";           
         }
     }   
 }

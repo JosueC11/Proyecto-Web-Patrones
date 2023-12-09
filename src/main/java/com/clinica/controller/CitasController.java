@@ -95,4 +95,11 @@ public class CitasController
         model.addAttribute("modo", "agendadas");
         return "/cita/listado";
     }
+    
+    @GetMapping("/terminar/{idCita}")    
+    public String terminarCitas(@PathVariable Long idCita) 
+    {
+        citasService.citaTerminar(idCita);      
+        return "redirect:/cita/listarCitasAgendadas";
+    }
 }

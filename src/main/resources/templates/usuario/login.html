@@ -7,34 +7,32 @@
     <body>
         <header th:replace="~{layout/plantilla :: header}"></header>
         <div class="container login-container">
-            <div class="Title">Iniciar Sesión</div>
+            <div class="Title">[[#{login.titulo}]]</div>
             <form th:action="@{/usuario/loguear}" th:object="${usuario}" method="post">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+                    <label for="exampleInputEmail1" class="form-label">[[#{login.correoelectronico}]]</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" th:field="*{correo}" aria-describedby="emailHelp" required>
-                        <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+                        <div id="emailHelp" class="form-text">[[#{registrarse.NuncaCompartiremos}]]</div>
                 </div>
                 <div class="mb-3">
-                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <label for="contrasena" class="form-label">[[#{login.contrasenna}]]</label>
                     <input type="password" class="form-control" id="contrasena" th:field="*{contrasena}" required>
                         </br>
-                        <button id="mostrarContrasena" type="button">Mostrar Contraseña</button>
+                        <button id="mostrarContrasena" type="button">[[#{login.mostrarContra}]]</button>
                 </div>
                 <p th:if="${error}" th:text="${error}" class="error-message"></p>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck">
-                        <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
+                        <label class="form-check-label" for="exampleCheck1">[[#{login.recuerdame}]]</label>
                 </div>
                 <div class="espaciado-index">
-                    <a class="una-linea" href="/usuario/recuperar" target="_blank">¿Olvidaste tu contraseña?</a>
+                    <a class="una-linea" href="/usuario/recuperar" target="_blank">[[#{login.olvidaste}]]</a>
                 </div>
                 <br>
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <button type="submit" class="btn btn-primary">[[#{login.ingresar}]]</button>
             </form>
         </div>
-        <footer th:replace="~{layout/plantilla :: footer}"></footer>
-        
-        <!-- Codigo de JavaScript que permite intercambiar el espacio de la contraseña para visualizarla -->
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>      
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {

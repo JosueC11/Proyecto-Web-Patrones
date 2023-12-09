@@ -37,9 +37,20 @@ public class UsuarioSesionController {
 
     @PostMapping("/registrar")
     public String registrarUsuario(@ModelAttribute Usuario usuario,Model model) {
-        us.registrarUsuario(usuario);
-        model.addAttribute("rol", httpSession.getAttribute("rol"));
-        return "redirect:/usuario/login";
+        
+        Usuario usuarioRegistrado = us.getUsuarioRegistro(usuario.getCorreo());
+
+        if (usuarioRegistrado == null) 
+        {
+            us.registrarUsuario(usuario);
+            model.addAttribute("rol", httpSession.getAttribute("rol"));         
+            return "redirect:/usuario/login";
+        }
+        else
+        {
+            model.addAttribute("error", "Usuario ya registrado!!, Intente con otro correo");
+            return "/usuario/registrarse";
+        }
     }
 
     @GetMapping("/login")

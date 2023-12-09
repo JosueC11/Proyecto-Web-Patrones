@@ -43,13 +43,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                     <div class="button-container">
                         <div class="mb-3">
-                            <a class="btn btn-primary" th:href="@{/usuario/perfil}" id="editarPerfilBtn">Editar perfil</a>
+                            <a class="btn btn-primary" th:href="@{/usuario/perfil}" id="editarPerfilBtn">[[#{perfUsuario.editar}]]</a>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary" onclick="verHistorial()">Ver historial</button>
+                            <button class="btn btn-primary" onclick="verHistorial()">[[#{perfUsuario.historial}]]</button>
                         </div>
                         <div class="mb-3">
-                            <a th:href="@{/agenda/listar}" class="btn btn-primary">Ver agenda</a>
+                            <a th:href="@{/agenda/listar}" class="btn btn-primary">[[#{perfUsuario.agenda}]]</a>
                         </div>
                     </div>
             </div>

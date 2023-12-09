@@ -47,6 +47,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <th th:if="${modo == 'agendadas'}">
                                     Foto User
                                 </th>
+                                <th th:if="${modo == 'agendadas'}">
+                                    Terminar Cita
+                                </th>
                                 <th th:unless="${modo == 'agendadas'}">
                                     [[#{aplicacion.opcion}]]
                                 </th>
@@ -57,6 +60,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td th:text="${cita.nombreDoctor}"/>
                                 <td th:text="${cita.fecha}"/>
                                 <td th:text="${cita.hora}"/>
+                                <td th:text="${cita.hora}"/>
                                 <td>
                                     <a th:if="${rol == 1}" th:href="@{/cita/traercita/}+${cita.idCita}"
                                         class="btn btn-info">
@@ -66,6 +70,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                        class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </a>
+                                    <a th:if="${modo == 'agendadas'}" th:href="@{/cita/terminar/}+${cita.idCita}" 
+                                       class="btn btn-info">
+                                        <i class="fa-solid fa-turn-down"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -73,6 +81,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 <div class="text-center p-2" th:if="${citas == null or citas.empty}">
                     <span>[[#{articulo.nocitas}]]</span>
+                    <div th:if="${modo == 'agendadas'}" class="d-flex justify-content-center align-items-center" style="margin-top: 1em;">
+                        <a class="btn btn-success" th:href="@{/cita/listar}">[[#{articulo.volver}]]</a>
+                    </div>
                 </div>
             </div>
             <br/>

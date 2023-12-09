@@ -93,20 +93,21 @@ public class CitaServiceImpl implements CitaService
     
     @Override
     @Transactional(readOnly = true)
-    public List<Cita> getCitasAgendadas()
-    { 
-            var listadoCitas = citaDao.findAllByEstado(false);
-
-            return listadoCitas;
+    public List<Cita> getCitasAgendadas() 
+    {     
+        var listadoCitas = citaDao.findAllByEstado(false);
+        listadoCitas.removeIf(e -> e.getTerminado());
+        return listadoCitas;
     }
+    
     
     @Override
     @Transactional(readOnly = true)
     public List<Cita> getCitasUsuario(String correo)
     { 
-            var listadoCitas = citaDao.findAllByCorreo(correo);
+        var listadoCitas = citaDao.findAllByCorreo(correo);
 
-            return listadoCitas;
+        return listadoCitas;
     }
     
     @Override
@@ -123,4 +124,22 @@ public class CitaServiceImpl implements CitaService
         var cita = citaDao.findById(idCita).orElse(null);
         return cita;
     } 
+    
+    @Override
+    @Transactional()
+    public void citaTerminar(Long idCita)
+    {
+        var cita = citaDao.findById(idCita).orElse(null);
+        cita.setTerminado(Boolean.TRUE);
+        citaDao.save(cita);
+    }
+    
+    @Override
+    @Transactional()
+    public List<Cita> getHistorial(String correo)
+    {
+        var historial = citaDao.findAllByCorreo(correo);
+        historial.removeIf(e -> !e.getTerminado());
+        return historial;
+    }
 }

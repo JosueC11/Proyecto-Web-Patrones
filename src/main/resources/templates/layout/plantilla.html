@@ -53,7 +53,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <ul class="submenu sin-vinetas">
                                     <li><a class="nav-link una-linea" th:href="@{/usuario/registro}">[[#{accion.registrarse}]]</a></li>
                                     <li><a class="nav-link una-linea" th:href="@{/usuario/login}">[[#{accion.iniciarsesion}]]</a></li>
-                                    <li><a class="nav-link una-linea" th:if="${rol == 1}" href="#">[[#{accion.verhistorial}]]</a></li>
+                                    <li><a class="nav-link una-linea" th:if="${rol == 1}" th:href="@{/historial/listar}">[[#{accion.verhistorial}]]</a></li>
                                     <li><a class="nav-link una-linea" th:if="${rol == 1}" th:href="@{/agenda/listar}">[[#{accion.agenda}]]</a></li>
                                     <li><a class="nav-link una-linea" th:href="@{/usuario/perfil}">[[#{accion.perfil}]]</a></li>
                                 </ul>
@@ -61,8 +61,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <li class="nav-item espaciado-index">
                                 <a class="nav-link" href="#"><i class="fa-solid fa-language fa-xl"></i></a>
                                 <ul class="submenu sin-vinetas">
-                                    <li><a class="nav-link una-linea" href="#">[[#{accion.es}]]</a></li>
-                                    <li><a class="nav-link una-linea" href="#">[[#{accion.en}]]</a></li>
+                                    <li><a class="nav-link una-linea" th:href="@{/(lang=es)}">[[#{accion.es}]]</a></li>
+                                    <li><a class="nav-link una-linea" th:href="@{/(lang=en)}">[[#{accion.en}]]</a></li>
                                 </ul>
                             </li>
                         </ul>
