@@ -26,6 +26,5 @@ public class IndexController
     {
         model.addAttribute("rol", httpSession.getAttribute("rol"));
         return "index";       
-    }
-     
+    }   
 }

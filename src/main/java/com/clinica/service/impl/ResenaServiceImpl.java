@@ -12,6 +12,7 @@ import com.clinica.service.ResenaService;
  *
  * @author Josuu
  */
+
 @Service
 public class ResenaServiceImpl implements ResenaService
 {

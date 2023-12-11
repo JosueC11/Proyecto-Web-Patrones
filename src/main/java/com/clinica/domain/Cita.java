@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import lombok.Data;
@@ -20,7 +21,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="citas")
-public class Cita 
+public class Cita implements Serializable
 {
     private static final long serialVersionUID = 1L;
     

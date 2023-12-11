@@ -28,7 +28,7 @@ public class ArticulosController
 {
 
     @Autowired
-    private ArticuloService aS;
+    private ArticuloService articuloService;
     
     @Autowired
     private HttpSession httpSession;
@@ -47,7 +47,7 @@ public class ArticulosController
         }
         else
         {
-            var articulos = aS.getArticulos();
+            var articulos = articuloService.getArticulos();
             model.addAttribute("articulos", articulos);
             model.addAttribute("rol", httpSession.getAttribute("rol"));
             model.addAttribute("articulo",  new Articulo());
@@ -66,7 +66,7 @@ public class ArticulosController
         }
         else
         {
-            var articulos = aS.getArticulosCategoria(categoria);
+            var articulos = articuloService.getArticulosCategoria(categoria);
             model.addAttribute("articulos", articulos);
             model.addAttribute("rol", httpSession.getAttribute("rol"));
             model.addAttribute("articulo",  new Articulo());
@@ -79,21 +79,21 @@ public class ArticulosController
     {
         if (!imagenFile.isEmpty()) 
         {
-            aS.agregarArticulo(articulo);
+            articuloService.agregarArticulo(articulo);
             articulo.setImagen(
                     firebaseStorageService.cargaImagen(
                             imagenFile,
                             "Articulo",
                             articulo.getIdArticulo()));
         }      
-        aS.agregarArticulo(articulo);
+        articuloService.agregarArticulo(articulo);
         return "redirect:/articulo/listar";     
     }  
     
     @GetMapping("/eliminar/{idArticulo}")
     public String eliminarArticulo(@PathVariable Long idArticulo) 
     {
-        aS.eliminarArticulo(idArticulo);
+        articuloService.eliminarArticulo(idArticulo);
         return "redirect:/articulo/listar";
     }
     
@@ -105,7 +105,7 @@ public class ArticulosController
     {
         String usuario = (String) httpSession.getAttribute("correo");
         
-        aS.agregarCarrito(idArticulo,usuario);
+        articuloService.agregarCarrito(idArticulo,usuario);
         return "redirect:/articulo/listar";
     }
     
@@ -113,7 +113,7 @@ public class ArticulosController
     public String abrirCarrito(Model model) 
     {
         String usuario = (String) httpSession.getAttribute("correo");
-        var articulosCarrito = aS.getCarrito(usuario);
+        var articulosCarrito = articuloService.getCarrito(usuario);
         model.addAttribute("articulosCarrito", articulosCarrito);
         return "/articulo/carritocompras";
     }
@@ -121,7 +121,7 @@ public class ArticulosController
     @GetMapping("/eliminarArticuloCarrito/{idArticulo}")
     public String eliminarArticuloCarrito(@PathVariable Long idArticulo) 
     {
-        aS.eliminarArticuloCarrito(idArticulo);
+        articuloService.eliminarArticuloCarrito(idArticulo);
         return "redirect:/articulo/abrircarrito";
     }
     
@@ -129,7 +129,7 @@ public class ArticulosController
     public String pagarCarrito() 
     {
         String usuario = (String) httpSession.getAttribute("correo");
-        aS.pagarCarrito(usuario);
+        articuloService.pagarCarrito(usuario);
         return "redirect:/articulo/abrircarrito";
     }
 }

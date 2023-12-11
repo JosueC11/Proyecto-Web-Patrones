@@ -7,6 +7,7 @@ import java.util.List;
  *
  * @author Josuu
  */
+
 public interface ResenaService 
 {
     public List<Resena> getResenas();

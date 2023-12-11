@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -58,6 +56,7 @@ public class ResenasController
         model.addAttribute("resenas", resenas);
         model.addAttribute("resena",  new Resena());
         model.addAttribute("rol", httpSession.getAttribute("rol"));
+        model.addAttribute("modo", "listuser");
         model.addAttribute("correo", httpSession.getAttribute("correo"));
         for(Resena r: resenas)
         {

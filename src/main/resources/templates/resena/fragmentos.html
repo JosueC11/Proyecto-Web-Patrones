@@ -20,6 +20,9 @@
                                             <th>[[#{resena.user}]]</th>
                                             <th>[[#{resena.descripcion}]]</th>
                                             <th>[[#{resena.puntos}]]</th>
+                                            <th th:if="${modo == 'listuser'}">
+                                                [[#{aplicacion.opcion}]]
+                                            </th>
                                             <th th:if="${rol == 2}">
                                                 [[#{aplicacion.opcion}]]
                                             </th>

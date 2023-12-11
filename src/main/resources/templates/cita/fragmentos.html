@@ -60,12 +60,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td th:text="${cita.nombreDoctor}"/>
                                 <td th:text="${cita.fecha}"/>
                                 <td th:text="${cita.hora}"/>
-                                <td>
-                                    <a th:if="${rol == 1}" th:href="@{/cita/traercita/}+${cita.idCita}"
+                                <td th:if="${rol == 1}">
+                                    <a th:href="@{/cita/traercita/}+${cita.idCita}"
                                         class="btn btn-info">
                                         <i class="fa-solid fa-address-book"></i>
                                     </a>
-                                    <a th:if="${rol == 2}" th:href="@{/cita/eliminar/}+${cita.idCita}" 
+                                </td>
+                                <td th:if="${rol == 2}">                                   
+                                    <a th:if="${modo != 'agendadas'}" th:href="@{/cita/eliminar/}+${cita.idCita}" 
                                        class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </a>
@@ -74,10 +76,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <i class="fa-solid fa-turn-down"></i>
                                     </a>
                                 </td>
-                                <td th:if="${cita.imagen != null}">
+                                <td th:if="${cita.imagen != null and modo == 'agendadas'}">
                                     <img id="blah" th:src="@{${cita.imagen}}" height="50"/>
                                 </td>
-                                <td th:unless="${cita.imagen != null}" th:text="${cita.correo}">  
+                                <td th:if="${cita.imagen == null and modo == 'agendadas'}" th:text="${cita.correo}"/>  
                             </tr>
                         </tbody>
                     </table>

@@ -88,6 +88,7 @@ public class CitasController
     {
         var citas = citasService.getCitasAgendadas();
         model.addAttribute("citas", citas);
+        model.addAttribute("rol", httpSession.getAttribute("rol"));
         model.addAttribute("modo", "agendadas");
         return "/cita/listado";
     }

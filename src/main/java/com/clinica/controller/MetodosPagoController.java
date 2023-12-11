@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MetodosPagoController{
     
     @Autowired
-    private MetodoPagoService mps;
+    private MetodoPagoService metodoPagoService;
     
     @Autowired
     private HttpSession httpSession;
@@ -36,7 +36,7 @@ public class MetodosPagoController{
         else
         {
             model.addAttribute("rol", httpSession.getAttribute("rol"));
-            var metodos = mps.getMetodosPagos(usuario);
+            var metodos = metodoPagoService.getMetodosPagos(usuario);
             model.addAttribute("metodos", metodos);
             model.addAttribute("metodoPago",  new MetodoPago());
             return "/metodopago/listado";
@@ -48,22 +48,22 @@ public class MetodosPagoController{
     public String agregarMedotoPago(@ModelAttribute MetodoPago metodoPago)
     {
         String usuario = (String) httpSession.getAttribute("correo");
-        mps.agregarMetodoPago(metodoPago, usuario);
-        mps.establecerMetodoPredeterminado(metodoPago.getNumeroTarjeta());
+        metodoPagoService.agregarMetodoPago(metodoPago, usuario);
+        metodoPagoService.establecerMetodoPredeterminado(metodoPago.getNumeroTarjeta());
         return "redirect:/metodopago/listar";     
     }  
     
     @GetMapping("/eliminar/{numeroTarjeta}")
     public String eliminarArticulo(@PathVariable String numeroTarjeta) 
     {
-        mps.eliminarMetodoPago(numeroTarjeta);
+        metodoPagoService.eliminarMetodoPago(numeroTarjeta);
         return "redirect:/metodopago/listar";
     }
     
     @GetMapping("/establecerPredeterminado/{numeroTarjeta}")
     public String establecerPredeterminado(@PathVariable String numeroTarjeta) 
     {
-        mps.establecerMetodoPredeterminado(numeroTarjeta);
+        metodoPagoService.establecerMetodoPredeterminado(numeroTarjeta);
         return "redirect:/metodopago/listar";
     }
 }

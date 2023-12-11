@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("/historial")
-public class Historial
+public class HistorialController
 {
     @Autowired
-    private CitaService cS;
+    private CitaService citaService;
 
     @GetMapping("/listar")
     public String mostrarHistorial(HttpSession httpSession, Model model) 
@@ -35,7 +35,7 @@ public class Historial
         {
             model.addAttribute("rol", httpSession.getAttribute("rol"));
             model.addAttribute("imagen", httpSession.getAttribute("imagen"));
-            var historial = cS.getHistorial(usuario);
+            var historial = citaService.getHistorial(usuario);
             model.addAttribute("historial", historial);
             return "/historial/listado";           
         }

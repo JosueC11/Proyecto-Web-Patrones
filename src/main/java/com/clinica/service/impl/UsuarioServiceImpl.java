@@ -35,10 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService
     @Override
     @Transactional
     public void editarUsuario(Usuario usuario)
-    {
-        
-        System.out.println(usuario.getApellido());
-        System.out.println(usuario.getCorreo());
+    {        
         usuarioDao.save(usuario);
     }
 }

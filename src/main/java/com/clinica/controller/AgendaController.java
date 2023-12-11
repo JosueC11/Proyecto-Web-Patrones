@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AgendaController 
 {
     @Autowired
-    private CitaService cS;
+    private CitaService citaService;
 
     @GetMapping("/listar")
     public String mostrarListado(HttpSession httpSession, Model model) 
@@ -34,7 +34,7 @@ public class AgendaController
         {
             model.addAttribute("imagen", httpSession.getAttribute("imagen"));
             model.addAttribute("rol", httpSession.getAttribute("rol"));
-            var citasAgendadas = cS.getCitasUsuario(usuario);
+            var citasAgendadas = citaService.getCitasUsuario(usuario);
             model.addAttribute("agenda", citasAgendadas);
             return "/agenda/listado";           
         }
