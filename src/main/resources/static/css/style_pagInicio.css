@@ -1,0 +1,20 @@
+.card_resultados {
+    background-color: #45B9AC;
+     margin-bottom: 20px;
+     margin-right: 40px;
+     color: white;
+}
+
+.card_limpiezas {
+    background-color: #A1D245;
+     margin-bottom: 20px;
+     margin-right: 40px;
+     color: white;
+}
+
+.card_carillas {
+    background-color: #D9DC0B;
+     margin-bottom: 20px;
+     margin-right: 0px;
+     color: white;
+}

@@ -105,5 +105,72 @@
             </div>
             <br>
         </section>
-    </body>
+        <section th:fragment="paginaInicio">
+            <div id="carouselInicio" class="carousel slide" style="max-width: 1000px; margin: auto;">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselInicio" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselInicio" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <br>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://images.pexels.com/photos/3845735/pexels-photo-3845735.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block mx-auto" style="width: 1000px; height: 800px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.pexels.com/photos/3845548/pexels-photo-3845548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block mx-auto" style="width: 1000px; height: 800px;">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselInicio" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselInicio" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <br>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="card card_resultados" style="width: 18rem;">
+                        <div class="text-center mx-auto">
+                            <h5 class="card-title">[[#{paginaInicio.resultados}]]</h5>
+                            <a th:href="@{/historialClinico/listar}">
+                                <img src="https://cdn-icons-png.flaticon.com/128/1471/1471879.png" alt="Icono de diente">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card card_limpiezas" style="width: 18rem;">
+                        <div class="text-center mx-auto">
+                            <h5 class="card-title">[[#{paginaInicio.limpieza}]]</h5>
+                            <a th:href="@{/historialClinico/listar}">
+                                <img src="https://cdn-icons-png.flaticon.com/128/1739/1739599.png" alt="Icono de diente">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card card_carillas" style="width: 18rem;">
+                        <div class="text-center mx-auto">
+                            <h5 class="card-title">[[#{paginaInicio.carillas}]]</h5>
+                            <a th:href="@{/historialClinico/listar}">
+                                <img src="https://cdn-icons-png.flaticon.com/128/2441/2441136.png" alt="Icono de diente">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <br>    
+                    <div class="card mb-3 mx-auto card_resultados" style="max-width: 1000px; position: relative;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://facilityvenezuela.com/wp-content/uploads/2020/09/Construccion-o-Remodelacion-de-Consultorio-Dental-%E2%80%93-Facility-Venezuela.jpg" class="img-fluid rounded-start" alt="600" style="width: 100%; height: auto;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body position-relative d-flex flex-column">
+                                    <h5 class="card-title fs-6">[[#{paginaInicio.clinica}]]</h5>
+                                    <p class="card-text fs-7">[[#{paginaInicio.text}]]</p>
+                                    <a th:href="@{/sobreNosotros/info}" class="btn btn-primary">[[#{paginaInicio.vermas}]]</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </body>
 </html>

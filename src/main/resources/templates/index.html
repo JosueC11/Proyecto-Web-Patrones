@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div id="bienvenida" class="bienvenida-message">
             <p th:if="${bienvenida}" th:text="${bienvenida}"></p>
         </div>
-        <section th:replace="~{historialClinico/fragmentos :: listadoHistorial}"></section>
+        <section th:replace="~{historialClinico/fragmentos :: paginaInicio}"></section>
         <footer th:replace="~{layout/plantilla :: footer}"></footer>
     </body>
 </html>
