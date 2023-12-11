@@ -1,6 +1,7 @@
 package com.clinica.controller;
 
 import com.clinica.domain.Usuario;
+import com.clinica.service.FirebaseStorageService;
 import com.clinica.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -26,6 +29,9 @@ public class UsuarioSesionController {
 
     @Autowired
     private HttpSession httpSession;
+    
+    @Autowired
+    private FirebaseStorageService firebaseStorageService;
 
     @GetMapping("/registro")
     public String inicioRegistro(Model model) {
@@ -71,6 +77,7 @@ public class UsuarioSesionController {
                 model.addAttribute("bienvenida", "¡Bienvenido, " + usuarioRegistrado.getNombre() + "!");
                 httpSession.setAttribute("correo", usuario.getCorreo());
                 httpSession.setAttribute("rol", usuarioRegistrado.getIdRol());
+                httpSession.setAttribute("imagen", usuarioRegistrado.getDireccionFoto());
                 return "redirect:/";
             }
         }
@@ -84,7 +91,8 @@ public class UsuarioSesionController {
 
         if (usuario == null) {
             return "redirect:/usuario/login";
-        } else 
+        } 
+        else 
         {
             var mostrar = us.getUsuarioRegistro(usuario);
             model.addAttribute("usuario", mostrar);
@@ -94,17 +102,37 @@ public class UsuarioSesionController {
         }
     }
     
+    @GetMapping("/modificar")
+    public String modificar(Model model) {
+        
+        String usuario = (String) httpSession.getAttribute("correo"); 
+        
+        var mostrar = us.getUsuarioRegistro(usuario);
+        model.addAttribute("usuario", mostrar);
+        model.addAttribute("rol", httpSession.getAttribute("rol"));
+        return "/usuario/modifica";       
+    }
+    
     @PostMapping("/editar")
-    public String editarUsuario(@ModelAttribute Usuario usuario) 
+    public String editarUsuario(@ModelAttribute Usuario usuario,@RequestParam("imagenFile") MultipartFile imagenFile) 
     {
         int usuarioRol = (int) httpSession.getAttribute("rol");
+        String usuarioCorreo = (String) httpSession.getAttribute("correo");
+        
         usuario.setIdRol(usuarioRol);
+        usuario.setCorreo(usuarioCorreo);
+        
+        if (!imagenFile.isEmpty()) 
+        {
+            us.editarUsuario(usuario);
+            usuario.setDireccionFoto(
+                    firebaseStorageService.cargaImagen(
+                            imagenFile,
+                            "Usuario",
+                            1L));
+        }    
         us.editarUsuario(usuario);
+        httpSession.setAttribute("imagen", usuario.getDireccionFoto());
         return "redirect:/usuario/perfil";
-    }
-       
-    @PostMapping("/informacion")
-    public String informacionUsuario() {
-        return "index";
-    }
+    }      
 }

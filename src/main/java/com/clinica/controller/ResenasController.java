@@ -1,7 +1,5 @@
 package com.clinica.controller;
 
-import com.clinica.domain.Cita;
-import com.clinica.domain.MetodoPago;
 import com.clinica.domain.Resena;
 import com.clinica.service.ResenaService;
 import jakarta.servlet.http.HttpSession;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -70,7 +70,8 @@ public class ResenasController
     public String agendarResna(@ModelAttribute Resena resenaAgregar)
     {
         String usuario = (String) httpSession.getAttribute("correo");
-        resenaService.agregarResena(resenaAgregar,usuario);
+        String imagen = (String) httpSession.getAttribute("imagen");
+        resenaService.agregarResena(resenaAgregar,usuario,imagen);
         return "redirect:/resena/listar";     
     }  
     

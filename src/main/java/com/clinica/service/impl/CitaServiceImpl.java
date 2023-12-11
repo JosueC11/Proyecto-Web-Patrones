@@ -80,11 +80,12 @@ public class CitaServiceImpl implements CitaService
     
     @Override
     @Transactional
-    public void agendarCita(Cita cita, String correo)
+    public void agendarCita(Cita cita, String correo, String imagen)
     {
         cita.setEstado(Boolean.FALSE);
         cita.setTerminado(Boolean.FALSE);
         cita.setCorreo(correo);
+        cita.setImagen(imagen);
             
         // Guarda el valor actualizado en la base de datos
         citaDao.save(cita);
@@ -106,7 +107,7 @@ public class CitaServiceImpl implements CitaService
     public List<Cita> getCitasUsuario(String correo)
     { 
         var listadoCitas = citaDao.findAllByCorreo(correo);
-
+        listadoCitas.removeIf(e -> e.getTerminado()==true);
         return listadoCitas;
     }
     
@@ -139,7 +140,7 @@ public class CitaServiceImpl implements CitaService
     public List<Cita> getHistorial(String correo)
     {
         var historial = citaDao.findAllByCorreo(correo);
-        historial.removeIf(e -> !e.getTerminado());
+        historial.removeIf(e -> e.getTerminado()==false);
         return historial;
     }
 }

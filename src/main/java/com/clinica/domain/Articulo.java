@@ -33,4 +33,5 @@ public class Articulo
     private Double precio;
     private boolean estado;
     private String categoria;
+    private String imagen;
 }

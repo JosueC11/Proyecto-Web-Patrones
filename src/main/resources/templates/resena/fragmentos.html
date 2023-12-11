@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
@@ -31,7 +27,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </thead>
                                     <tbody>
                                         <tr th:each="resena: ${resenas}">
-                                            <td>Foto User</td>
+                                            <td th:if="${resena.imagen != null}">
+                                                <img id="blah" th:src="@{${resena.imagen}}" height="50"/>
+                                            </td>
+                                            <td th:unless="${resena.imagen != null}" th:text="${resena.correo}">   
+                                            </td>
                                             <td th:text="${resena.descripcion}"/>
                                             <td th:if="${resena.puntos == 1}">☆</td>
                                             <td th:if="${resena.puntos == 2}">☆☆</td>

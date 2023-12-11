@@ -13,7 +13,7 @@ public interface ResenaService
     
     public List<Resena> getResenasUser(String correo);
       
-    public void agregarResena(Resena resena, String usuario);
+    public void agregarResena(Resena resena, String usuario,String imagen);
     
     public void eliminarResena(Long idResena); 
 }

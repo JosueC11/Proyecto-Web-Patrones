@@ -12,9 +12,7 @@
                 <h4>[[#{historial.titulo}]]</h4>
                 <br/>
                 <div class="d-flex justify-content-between color-header padding-5">
-                    <h5>
-                        [[#{historial.mi}]]
-                    </h5>  
+                    <img id="blah" th:src="@{${imagen}}" alt="Sin Imagen" height="50"/>
                 </div>
                 <br/>
                 <br/>
@@ -36,14 +34,14 @@
                                 <td th:text="${cita.fecha}"/>
                                 <td th:text="${cita.hora}"/>
                                 <td th:if="${cita.terminado}">
-                                    Terminado                                   
+                                    [[#{historial.terminado}]]                                  
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="text-center p-2" th:if="${historial == null or historial.empty}">
-                    <span>[[#{agenda.noAgendas}]]</span>
+                    <span>[[#{no.historial}]]</span>
                 </div>
             </div>
             <br/>

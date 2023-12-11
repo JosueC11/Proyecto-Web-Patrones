@@ -35,9 +35,10 @@ public class ResenaServiceImpl implements ResenaService
     
     @Override
     @Transactional
-    public void agregarResena(Resena resena, String usuario)
+    public void agregarResena(Resena resena, String usuario, String imagen)
     {
         resena.setCorreo(usuario);
+        resena.setImagen(imagen);
         resenaDao.save(resena);
     }
     

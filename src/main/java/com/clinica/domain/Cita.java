@@ -35,4 +35,5 @@ public class Cita
     private String descripcion;
     private String correo;
     private Boolean terminado;
+    private String imagen;
 }

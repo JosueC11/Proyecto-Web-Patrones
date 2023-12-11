@@ -32,4 +32,5 @@ public class Resena implements Serializable
     private String descripcion;
     private int puntos;
     private String correo;
+    private String imagen;
 }

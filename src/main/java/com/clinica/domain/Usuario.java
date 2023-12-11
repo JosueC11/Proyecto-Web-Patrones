@@ -14,7 +14,6 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "usuarios")
-
 public class Usuario implements Serializable
 {
     @Id
@@ -29,4 +28,5 @@ public class Usuario implements Serializable
     private String direccionFoto;
     @Column(name = "id_rol")
     private int idRol;
+    
 }

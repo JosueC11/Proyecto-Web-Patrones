@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
@@ -16,7 +12,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="info-container-perfil">
                         <div class="mb-3">
                             <label class="form-label">[[#{perfUsuario.fotoPerfil}]]</label>
-                            <img th:src="${urlImagen}" alt="Foto de Perfil" id="imagenPerfil">
+                            </br>
+                            <img th:src="${usuario.direccionFoto}" alt="Sin Foto de Perfil" id="imagenPerfil" height="80">
                         </div>
                         <div class="info">
                             <div class="mb-3">
@@ -43,48 +40,55 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                     <div class="button-container">
                         <div class="mb-3">
-                            <a class="btn btn-primary" th:href="@{/usuario/perfil}" id="editarPerfilBtn">[[#{perfUsuario.editar}]]</a>
+                            <a class="btn btn-primary" th:href="@{/usuario/modificar}" id="editarPerfilBtn">[[#{perfUsuario.editar}]]</a>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary" onclick="verHistorial()">[[#{perfUsuario.historial}]]</button>
+                            <a class="btn btn-primary" th:href="@{/historial/listar}" id="historialBtn">[[#{perfUsuario.historial}]]</a>
                         </div>
                         <div class="mb-3">
-                            <a th:href="@{/agenda/listar}" class="btn btn-primary">[[#{perfUsuario.agenda}]]</a>
+                            <a th:href="@{/agenda/listar}" class="btn btn-primary" id="agendaBtn">[[#{perfUsuario.agenda}]]</a>
                         </div>
                     </div>
             </div>
         </section>
         
         <section th:fragment="editarUsuario">
-            <div id="editarUsuario" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-md formularios">
-                    <div class="modal-content">
-                        <div class="modal-header text-white">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="container my-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <h4>
+                                [[#{pagina.formularioL}]]
+                            </h4>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3" th:action="@{/usuario/editar}" th:object="${usuarioNuevo}"  method="POST">
+                            <form class="row g-3" th:action="@{/usuario/editar}" th:object="${usuario}" method="POST" enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control" th:field="*{usuarioNuevo.nombre}">
+                                    <label for="imagen">[[#{articulo.imagen}]]</label>
+                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="your image" height="200"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="apellido" class="form-label">Apellido:</label>
-                                    <input type="text" class="form-control" th:field="*{usuarioNuevo.apellido}">
+                                    <label for="nombre" class="form-label">[[#{perfUsuario.nombre}]] :</label>
+                                    <input type="text" class="form-control" th:field="*{nombre}" th:value="${usuario.nombre}" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="telefono" class="form-label">Teléfono:</label>
-                                    <input type="text" class="form-control" th:field="*{usuarioNuevo.telefono}">
+                                    <label for="apellido" class="form-label">[[#{perfUsuario.apellido}]] :</label>
+                                    <input type="text" class="form-control" th:field="*{apellido}" th:value="${usuario.apellido}" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="direccion" class="form-label">Dirección :</label>
-                                    <input type="text" class="form-control" th:field="*{usuarioNuevo.direccion}">
+                                    <label for="telefono" class="form-label">[[#{perfUsuario.telefono}]] :</label>
+                                    <input type="text" class="form-control" th:field="*{telefono}" th:value="${usuario.telefono}" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="contrasena" class="form-label">Contraseña :</label>
-                                    <input type="password" class="form-control" th:field="*{usuarioNuevo.contrasena}">
+                                    <label for="direccion" class="form-label">[[#{perfUsuario.direccion}]] :</label>
+                                    <input type="text" class="form-control" th:field="*{direccion}" th:value="${usuario.direccion}" />
                                 </div>
-                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                <div class="mb-3">
+                                    <label for="contrasena" class="form-label">[[#{login.contrasenna}]] :</label>
+                                    <input type="password" class="form-control" th:field="*{contrasena}" th:value="${usuario.contrasena}" required="true"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">[[#{perfil.guardar}]]</button>
                             </form>
                         </div>
                     </div>

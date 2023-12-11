@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.clinica.controller;
 
 import com.clinica.domain.Cita;
-import com.clinica.domain.Usuario;
 import com.clinica.service.CitaService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -67,12 +62,13 @@ public class CitasController
     public String agendarCita(@ModelAttribute Cita citaAgendar)
     {
         String usuario = (String) httpSession.getAttribute("correo");
-        citasService.agendarCita(citaAgendar,usuario);
+        String imagen = (String) httpSession.getAttribute("imagen");
+        citasService.agendarCita(citaAgendar,usuario,imagen);
         return "redirect:/cita/listar";     
     }  
     
     @GetMapping("/traercita/{idCita}")
-    public String agendarCita(@PathVariable Long idCita, Model model)
+    public String citaAgendar(@PathVariable Long idCita, Model model)
     {
         var cita = citasService.getCitaId(idCita);
         model.addAttribute("cita", cita);

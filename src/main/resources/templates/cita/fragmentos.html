@@ -45,13 +45,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <th>[[#{cita.fecha}]]</th>
                                 <th>[[#{cita.hora}]]</th>
                                 <th th:if="${modo == 'agendadas'}">
-                                    Foto User
-                                </th>
-                                <th th:if="${modo == 'agendadas'}">
-                                    Terminar Cita
+                                    [[#{cita.terminar}]]
                                 </th>
                                 <th th:unless="${modo == 'agendadas'}">
                                     [[#{aplicacion.opcion}]]
+                                </th>
+                                <th th:if="${modo == 'agendadas'}">
+                                    [[#{cita.foto}]]
                                 </th>
                             </tr>
                         </thead>
@@ -59,7 +59,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <tr th:each="cita: ${citas}">
                                 <td th:text="${cita.nombreDoctor}"/>
                                 <td th:text="${cita.fecha}"/>
-                                <td th:text="${cita.hora}"/>
                                 <td th:text="${cita.hora}"/>
                                 <td>
                                     <a th:if="${rol == 1}" th:href="@{/cita/traercita/}+${cita.idCita}"
@@ -75,6 +74,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <i class="fa-solid fa-turn-down"></i>
                                     </a>
                                 </td>
+                                <td th:if="${cita.imagen != null}">
+                                    <img id="blah" th:src="@{${cita.imagen}}" height="50"/>
+                                </td>
+                                <td th:unless="${cita.imagen != null}" th:text="${cita.correo}">  
                             </tr>
                         </tbody>
                     </table>

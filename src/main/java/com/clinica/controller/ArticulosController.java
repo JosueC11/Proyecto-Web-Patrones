@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.clinica.controller;
 
 import com.clinica.domain.Articulo;
-import com.clinica.domain.Usuario;
 import com.clinica.service.ArticuloService;
+import com.clinica.service.FirebaseStorageService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -34,6 +32,9 @@ public class ArticulosController
     
     @Autowired
     private HttpSession httpSession;
+    
+    @Autowired
+    private FirebaseStorageService firebaseStorageService;
 
     @GetMapping("/listar")
     public String mostrarListado(Model model) 
@@ -74,8 +75,17 @@ public class ArticulosController
     }
     
     @PostMapping("/agregar")
-    public String agregarArticulo(@ModelAttribute Articulo articulo)
+    public String agregarArticulo(@ModelAttribute Articulo articulo,@RequestParam("imagenFile") MultipartFile imagenFile)
     {
+        if (!imagenFile.isEmpty()) 
+        {
+            aS.agregarArticulo(articulo);
+            articulo.setImagen(
+                    firebaseStorageService.cargaImagen(
+                            imagenFile,
+                            "Articulo",
+                            articulo.getIdArticulo()));
+        }      
         aS.agregarArticulo(articulo);
         return "redirect:/articulo/listar";     
     }  

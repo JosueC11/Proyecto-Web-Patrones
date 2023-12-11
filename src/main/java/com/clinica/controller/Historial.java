@@ -34,7 +34,8 @@ public class Historial
         else
         {
             model.addAttribute("rol", httpSession.getAttribute("rol"));
-            var historial = cS.getCitasUsuario(usuario);
+            model.addAttribute("imagen", httpSession.getAttribute("imagen"));
+            var historial = cS.getHistorial(usuario);
             model.addAttribute("historial", historial);
             return "/historial/listado";           
         }

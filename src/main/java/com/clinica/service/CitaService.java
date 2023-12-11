@@ -21,7 +21,7 @@ public interface CitaService
     
     public List<Cita> getCitasFecha(String fecha);
     
-    public void agendarCita(Cita cita,String correo);
+    public void agendarCita(Cita cita,String correo,String imagen);
     
     public List<Cita> getCitasAgendadas();
     

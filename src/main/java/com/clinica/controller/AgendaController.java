@@ -25,14 +25,14 @@ public class AgendaController
     @GetMapping("/listar")
     public String mostrarListado(HttpSession httpSession, Model model) 
     {
-        String usuario = (String) httpSession.getAttribute("correo");
-        
+        String usuario = (String) httpSession.getAttribute("correo");      
         if(usuario == null)
         {
             return "redirect:/usuario/login";
         }
         else
         {
+            model.addAttribute("imagen", httpSession.getAttribute("imagen"));
             model.addAttribute("rol", httpSession.getAttribute("rol"));
             var citasAgendadas = cS.getCitasUsuario(usuario);
             model.addAttribute("agenda", citasAgendadas);

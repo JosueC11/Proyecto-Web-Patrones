@@ -44,6 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
+                                <th>[[#{articulo.img}]]</th>
                                 <th>[[#{articulo.categoria}]]</th>
                                 <th>[[#{articulo.marca}]]</th>
                                 <th>[[#{articulo.nombre}]]</th>
@@ -54,6 +55,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </thead>
                         <tbody>
                             <tr th:each="articulo: ${articulos}">
+                                <td>
+                                    <img id="blah" th:src="@{${articulo.imagen}}" alt="Sin Imagen" height="50"/>
+                                </td>
                                 <td th:text="${articulo.categoria}"/>
                                 <td th:text="${articulo.marca}"/>
                                 <td th:text="${articulo.nombre}"/>
@@ -129,8 +133,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </table>
                     <div class="container">
                         <div class="d-flex justify-content-center align-items-center">
-                            <a class="btn btn-success" th:href="@{/articulo/pagarCarrito}" type="button" aria-expanded="false">
-                                [[#{articulo.pagar}]]
+                            <a
+                                type="button" 
+                                class="btn btn-primary btn-block" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#confirmarCompra">
+                                <i class="fa-solid fa-credit-card"></i> [[#{articulo.pagar}]]
                             </a>
                             <div class="mx-3"></div> 
                             <a class="btn btn-success" th:href="@{/articulo/listar}">[[#{articulo.volver}]]</a>
@@ -156,7 +164,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <br/>
-                        <form class="row g-3" th:action="@{/articulo/agregar}" th:object="${articulo}"  method="POST">
+                        <form class="row g-3" th:action="@{/articulo/agregar}" th:object="${articulo}"  method="POST" enctype="multipart/form-data">
                             <br/>
                             <div class="mb-3">
                                 <label for="imagen">[[#{articulo.imagen}]]</label>
@@ -190,6 +198,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">[[#{aplicacion.accion}]]</button>
+                            </div>
+                            <br/>
+                        </form>
+                        <br/>
+                    </div>
+                </div>  
+            </div>
+        </section>
+        <section th:fragment="confirmarCompra" class="py-4 mb-4">
+            <div id="confirmarCompra" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md formularios">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">[[#{articulo.confirmar}]]</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <br/>
+                        <form class="row g-3" th:action="@{/articulo/pagarCarrito}">
+                            <br/>
+                            <div class="mb-3">
+                                <label for="imagen">[[#{articulo.procesando}]]</label>
+                                <br/>
+                                <label for="imagen">[[#{articulo.confirmando}]]</label>
+                                <br/>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">[[#{articulo.confirmado}]]</button>
                             </div>
                             <br/>
                         </form>
